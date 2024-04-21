@@ -1,0 +1,1058 @@
+WEBVTT
+
+00:00.000 --> 00:08.520
+So, im letzten Kapitel der Vorlesung Software Engineering 1 oder Einführung in der Software
+
+00:08.520 --> 00:18.680
+Engineering dreht es sich um das Thema Software Test. Ja, schauen wir uns mal an, welche Probleme
+
+00:18.680 --> 00:25.120
+gibt es mit Software Tests. Wir hatten ja schon mal zwei oder eine ganze Reihe von Beispielen am
+
+00:25.120 --> 00:31.120
+Anfang der Vorlesung, wo wir darüber gesprochen haben, ja, warum ist es überhaupt sinnvoll,
+
+00:31.120 --> 00:39.080
+strukturiert an eine Softwareentwicklung heranzugehen. Da will ich mal zwei Beispiele
+
+00:39.080 --> 00:47.560
+herausgreifen. 1979 ist zwar schon ein älteres Beispiel, aber war ziemlich teuer, sage ich mal,
+
+00:47.560 --> 00:52.840
+einfach, hat deutliche Konsequenzen gehabt. Das ist ein sehr einprägsames Beispiel.
+
+00:53.320 --> 01:04.960
+Der Steuercomputer einer Venus-Runde, der führte folgenden Befehl aus. Du3 i gleich 1.3. Ja,
+
+01:04.960 --> 01:13.720
+dass die Du-Schleife ist in Vortran gleich bedeutend, um in einer geringfügig anderen
+
+01:13.720 --> 01:19.720
+Syntax wie die Vorschleife in Java oder in anderen Programmiersprachen, also eine einfache
+
+01:19.840 --> 01:28.880
+Zellschleife. So, also hier sollte einfach eine Schleife programmiert werden. Ja,
+
+01:28.880 --> 01:45.480
+nur hier gab es ein kleines Problem. Die Zuweisung an sich war gültig. Anstelle von diesem Du können
+
+01:45.480 --> 01:54.840
+sich so ein Vor vorstellen. Die 3, das kennzeichnet einfach die letzte Zeile des Schleifenkörpers.
+
+01:54.840 --> 02:06.200
+Ja, und dann kommt die Schleifenbedingung i gleich 1.3. Das wurde erfolgreich kompiliert. Ja,
+
+02:06.200 --> 02:12.960
+und dementsprechend wurde also kein Fehler festgestellt. Das Ganze lief und die Rakete
+
+02:12.960 --> 02:18.160
+flog und ja, flog leider an ihrem Ziel vorbei. Sie können sich vorstellen,
+
+02:18.160 --> 02:26.680
+paar Millionen Dollar sind da leider in Rauch oder aufgegangen bzw. ins Nirwana gegangen.
+
+02:26.680 --> 02:35.960
+Der Punkt ist nämlich hier der, richtig wäre gewesen, hier sollte einfach eine Schleife
+
+02:35.960 --> 02:44.280
+dreimal durchgelaufen werden und zwar mit den Werten i gleich 1, i gleich 2, i gleich 3. So,
+
+02:44.280 --> 02:50.360
+und diese Schleife, die Schleifenanfang und Schleifenende wie in einer Vorschleife,
+
+02:50.360 --> 03:02.080
+das wird hier eben so aufgezählt. Ja, Schleifenanfang und Schleifenende des Schleifenzählers.
+
+03:02.080 --> 03:08.640
+Syntaktisch gültig ist das Ganze hier oben in Fortran, aber deswegen, Fortran ist eine
+
+03:08.640 --> 03:15.480
+ältere Programmiersprache, wird teilweise noch genutzt. Ja, gültig ist das, weil man in Fortran
+
+03:15.480 --> 03:28.440
+auch über Gleitkommawerte iterieren darf. Ja, da dürfte ich also von 1,3 bis 1,7 iterieren und
+
+03:28.440 --> 03:35.000
+das hier wäre jetzt also einfach ein Schleifenanfang und als Schleifenanfang ist der
+
+03:35.000 --> 03:43.760
+Wert 1,3 angegeben, also syntaktisch richtig. Ja, und wenn man sowas nicht ordentlich testet,
+
+03:43.760 --> 03:56.280
+dann passiert halt schon mal größerer Schaden. Ein anderes Beispiel war der 1984 im Computer
+
+03:56.440 --> 04:04.240
+meint, eine Überlaufgefahr für einen Staudamm in Frankreich zu erkennen und dementsprechend
+
+04:04.240 --> 04:10.440
+öffnete er einfach mal zwei Schleusentore automatisch. Das führte zu einer Überschwemmung
+
+04:10.440 --> 04:16.520
+und viele weitere Beispiele haben wir damals besprochen, auch aus der Neuzeit. Sie entsinnen
+
+04:16.520 --> 04:21.880
+sich vor ein paar Jahren, da wurde eine Wahlbeteiligung von über 100 Prozent irgendwie
+
+04:21.880 --> 04:28.240
+ermittelt, was ja nun auch keinen Sinn macht. Also auch da sind irgendwelche Prüfungen nicht
+
+04:28.240 --> 04:36.840
+ordentlich gewesen. Ja, schauen wir uns mal weiter an, womit sollte man sich denn genauer befassen,
+
+04:36.840 --> 04:43.400
+wenn es sich ums Testen handelt. Testen ist einfach nur ein kurzer Begriff, da kann man
+
+04:43.400 --> 04:52.360
+was ganz eng abgegrenztes mitmeiden, dass man einfach ausprobiert ist, ein Programm laufig
+
+04:52.360 --> 04:58.520
+oder aber man kann aber auch übergeordnete Prozesse darunter verstehen. Deswegen gehen
+
+04:58.520 --> 05:04.280
+wir hier jetzt mal kurz auf andere Begriffe ein. Und zwar, Test hat ja immer was mit Qualität zu
+
+05:04.280 --> 05:15.440
+tun. Und ja, dementsprechend sind in diesem Umfeld das Testen zu Begriffe üblich, die sich
+
+05:15.440 --> 05:20.880
+mit Qualität befassen. Und schauen wir zuerst mal auf den Beruf des Qualitätsmanagements.
+
+05:20.880 --> 05:29.560
+Darunter versteht man alle organisatorischen Maßnahmen oder Tätigkeiten und Maßnahmen zum
+
+05:29.560 --> 05:36.520
+Leiten und Lenken einer Organisation bezüglich Qualität, sind also Tätigkeiten und Maßnahmen,
+
+05:36.520 --> 05:43.520
+die da eine Rolle spielen. Dazu gehörten zum Beispiel die Festlegung von Qualitätszielen,
+
+05:43.520 --> 05:50.560
+die Qualitätsplanung, die Qualitätssicherung oder auch die Qualitätsverbesserung. Das ist ein
+
+05:50.560 --> 05:56.160
+zentraler Bestandteil von Arbeitsprozessen in ganz vielen Branchen. Qualitätsmanagement,
+
+05:56.160 --> 06:03.400
+also in der Automobilindustrie ist das das A und O. Sie wissen, dass wir heutzutage sehr
+
+06:03.400 --> 06:08.480
+hochwertige Automobile haben, aber diese Hochwertigkeit oder diese Wertigkeit bekommt
+
+06:08.480 --> 06:15.480
+man nur durch ein angemessenes Qualitätsmanagement in den Kopf. In der Luftfahrtindustrie ebenso,
+
+06:15.480 --> 06:23.160
+da spielt das Qualitätsmanagement nicht nur in den Komfortbereich hinein, sondern schlichtweg
+
+06:23.960 --> 06:29.400
+in die Sicherheit. Das sind nur zwei Beispiele von Branchen. Es gibt, eigentlich soll ich da
+
+06:29.400 --> 06:35.600
+drei Prümpchen hinter machen, noch ganz viele weitere Beispiele. Ab zur Ganzen vom Qualitätsmanagement
+
+06:35.600 --> 06:42.440
+ist die Qualitätssicherung, das ist nämlich eigentlich nur ein Teil des Qualitätsmanagements,
+
+06:42.440 --> 06:51.200
+wie sich hier oben auch ausdrückt. Hier oben habe ich die Qualitätssicherung als Teil des
+
+06:51.200 --> 06:57.480
+Qualitätsmanagements schon aufgeführt. Hierbei geht es einfach um die Einhaltung der vereinbarten
+
+06:57.480 --> 07:04.160
+Arbeitsprozesse zur Vermeidung von Fehlerzuständen, also um die Analyse der Ursachen für Fehler.
+
+07:04.160 --> 07:12.360
+Das Qualitätsmanagement dient der Erkennung, also dem Testen, unter Beseitigung von Fehlerzuständen.
+
+07:12.360 --> 07:20.360
+Testen ist also eigentlich in diesem Sinne hier nur die Erkennung von Fehlerzuständen.
+
+07:20.360 --> 07:27.040
+Ja, und ein Test ist also auch ein Mittel zur Erreichung eines angemessenen Qualitätsniveaus.
+
+07:27.040 --> 07:37.160
+Ja, was wir also festhalten können ist, Test ist ungleich von Qualitätssicherung und eigentlich hätte
+
+07:37.160 --> 07:42.600
+ich das hier auch noch erweitern können. Qualitätssicherung ist ungleich mit Qualitätsmanagement,
+
+07:42.600 --> 07:48.080
+aber ich denke, dass es hier jetzt durch die Folie auch zum Ausdruck kommt. Welche Probleme
+
+07:48.080 --> 07:55.200
+gibt es denn bei der Durchführung von Softwaretests? Wir befassen uns hier jetzt in dieser Stunde
+
+07:55.200 --> 08:03.040
+natürlich nur mit dem enger eingegrenzten Begriff der Softwaretests. Und zum einen haben wir den
+
+08:03.040 --> 08:11.840
+Aufwand. Bei komplexen Produkten gibt es da einen erhöhten Zeit- und Personalaufwand. Aber man sollte
+
+08:11.840 --> 08:24.240
+gleich sich bewusst machen, wenn man hochwertige Produkte seriös entwickeln möchte, egal ob das
+
+08:24.240 --> 08:29.680
+in der Automobilindustrie ist, Luftfahrt, die haben wir genannt, oder auch so Unternehmen wie Siemens,
+
+08:29.680 --> 08:38.880
+also große Unternehmen oder auch Unternehmen wie SAP, die größere Softwareprodukte erstellen,
+
+08:39.000 --> 08:47.160
+die leisten sich auch eigene Testabteilungen. Ich kenne das aus meinem eigenen Umfeld heraus auch.
+
+08:47.160 --> 08:54.960
+Da bin ich Softwareentwicklungsabteilungen begegnet, die gar nicht so groß waren wie
+
+08:54.960 --> 09:02.440
+jetzt so eine Siemens oder IBM oder SAP. Nee, das waren 30-40 Leute, aber die hatten eine kleine
+
+09:02.440 --> 09:08.400
+Testabteilung für ihre Produkte schon installiert. Die bestand dann eben nur aus zwei Mitarbeitern.
+
+09:08.400 --> 09:17.160
+Aber immerhin, der große Vorteil ist, wenn ich da eine eigene Abteilung rausmache, und das ist
+
+09:17.160 --> 09:25.280
+vielleicht die wichtigste Aussage hierbei, dass Entwicklung und Test von verschiedenen Personen
+
+09:25.280 --> 09:32.800
+ausgeführt werden sollten. Denn der Entwickler, das was man selbst entwickelt hat, das kennt man
+
+09:32.800 --> 09:40.400
+einfach zu gut. Man hat einen gewissen Blickwinkel da drauf und denkt an verschiedene Konstellationen,
+
+09:40.400 --> 09:45.960
+wie man das Produkt auch verwenden könnte, gar nicht. Und da ist es dann sehr praktisch,
+
+09:45.960 --> 09:51.720
+wenn da jemand aus einem anderen Blickwinkel heraus rangeht und das dann eben nur testet. Der
+
+09:51.720 --> 09:57.200
+hatte mit der Entwicklung gar nichts zu tun. Wie das mit welchen tollen Algorithmen gebaut worden
+
+09:57.200 --> 10:02.840
+ist, ist untergeordnet. Der schaut nur danach, was ist das Ergebnis, was klappt vielleicht nicht.
+
+10:02.840 --> 10:10.640
+Deswegen ist diese Trennung auf personaler Ebene da außerordentlich hilfreich und macht eben auch
+
+10:10.640 --> 10:17.560
+schon bei kleinen Organisationseinheiten Sinn. Ja, weiteres Problem ist die destruktive Grundaufgabe
+
+10:17.560 --> 10:26.240
+beim Testen. Ein Test dokumentiert bereits gemachte Fehler. Ja, in der eigenen oder eigene Fehler oder
+
+10:26.240 --> 10:31.320
+in der eigenen Abteilung. Da kommt es eben auch nochmal drauf an, wenn das der Entwickler ist,
+
+10:31.320 --> 10:36.280
+der selbst testet. Natürlich testet er immer seine einzelnen Methoden, seine einzelnen Unterprogramme,
+
+10:36.280 --> 10:44.960
+aber so größere Tests, na ja, wer stellt schon gerne fest, was habe ich jetzt in größerem Stil
+
+10:44.960 --> 10:51.600
+verkehrt gemacht. Das ist natürlich auch nicht so eine tolle Aufgabe, auch wenn das Umfeld
+
+10:51.600 --> 11:02.160
+entsprechend geartet ist. So, das sind so zwei Problembereiche, wo man mal schnell dran denken
+
+11:02.160 --> 11:07.040
+könnte, ach, hier kann man auch ein bisschen dran sparen. Na, war das einerseits zeitaufwendig und
+
+11:07.040 --> 11:11.560
+damit personalaufwendig und na ja, eine schöne Aufgabe ist das auch nicht. Zumindest, wenn man
+
+11:11.560 --> 11:20.400
+die eigenen Dinge testen soll. Aber daran zu sparen, da kann man nur vorwarnen, denn jedes
+
+11:20.400 --> 11:27.520
+Produkt wird getestet. Immer. Nämlich spätestens vom Endbenutzer. Ja, und wenn der Endbenutzer das
+
+11:27.520 --> 11:33.360
+testet und vorher zu wenig getestet worden ist, findet er vielleicht auch noch eine ganze Reihe
+
+11:33.360 --> 11:39.120
+von Fehlern. Und dann ist mal die Frage zu stellen, wie sieht es denn dann mit dem Kundenvertrauen aus?
+
+11:39.120 --> 11:48.040
+Also, da zu groß einzusparen, das sollte man sich sehr, sehr gut überlegen. Das macht ganz einfach
+
+11:48.040 --> 11:55.760
+gesagt, vielleicht nur einen schlechten einen. Ja, und dann kommt noch eines hinzu, der Korrekturaufwand.
+
+11:55.760 --> 12:03.520
+Je später hier etwas entdeckt wird, je größer ist der Korrekturaufwand. Ja, da die Entwicklung
+
+12:03.520 --> 12:08.000
+oftmals schon abgeschlossen ist. Ja, stellen Sie sich vor, der Endbenutzer testet was oder man
+
+12:08.000 --> 12:14.800
+testet etwas auch in der Testabteilung. Aber wenn die erst sehr spät ins Boot kommt, also ans Test
+
+12:14.800 --> 12:19.320
+kommt, dann ist die Entwicklung oftmals schon abgeschlossen. Konzeptionelle Änderungen,
+
+12:19.320 --> 12:24.640
+wo also im Ansatz irgendwie etwas schlecht überlegt worden ist oder einfach nicht bedacht
+
+12:24.640 --> 12:30.960
+worden ist, konzeptionelle Änderungen sind dann natürlich nur noch sehr schwer durchzuführen. Und
+
+12:30.960 --> 12:36.760
+ist das Produkt erst mal im Einsatz, na ja, dann bewirken kleine Änderungen großen Aufwand. Wenn
+
+12:36.760 --> 12:42.520
+das Produkt im Einsatz ist, stellen Sie es mal vor, das ist jetzt mal eine Bank oder Versicherung im
+
+12:42.520 --> 12:47.920
+Einsatz und da arbeiten mal so 3000 Leute mit einem Produkt. Wenn Sie da Änderungen durchführen
+
+12:47.920 --> 12:55.520
+wollen, dann müssen Sie die allein mal distribuieren. Ja, an die entsprechenden Enduser bringen,
+
+12:55.520 --> 13:02.160
+die vielleicht sogar schulen auf ein anderes Verhalten des Produkts. Das heißt also Änderungen im
+
+13:02.160 --> 13:10.600
+Produkteinsatz. Da sollte man alles für tun, die zu vermeiden, obwohl letztendlich immer vermeiden
+
+13:10.760 --> 13:18.520
+wird es nicht möglich sein. Ja, was sind so mögliche Fehlerquellen? Wir wissen ja alle
+
+13:18.520 --> 13:25.800
+als Informatiker, keine Software ist fehlerfrei. Welche Fehlerquellen haben wir? Ja, eine fehlende
+
+13:25.800 --> 13:32.520
+Kommunikation, das passiert zum Beispiel in der Teamkoordination, kann laufend passieren.
+
+13:32.520 --> 13:42.040
+Sich ändern Anforderungen. Manchmal haben die Kunden die Auftraggeber halt, ja, noch zusätzliche
+
+13:42.040 --> 13:48.120
+Ideen. Da ist in der Anforderungsermittlung in der Phase vielleicht irgendwas nicht ganz ideal
+
+13:48.120 --> 13:55.080
+gelaufen. Zeitdruck kann so eine Fehlerquelle sein. Teammitglieder, weil die sich einfach, ja,
+
+13:55.080 --> 14:02.640
+in den eingesetzten Technologien noch nicht sehr auskennen. Da ist ein Berufsanfänger drin,
+
+14:02.640 --> 14:08.480
+der vielleicht in seiner Ausbildung Java gemacht hat und soll jetzt ein C++ Programm schreiben oder
+
+14:08.480 --> 14:15.120
+sowas, was er nicht so gerne gelernt hat oder nicht gerne gemacht hat. Vielleicht ist der Code
+
+14:15.120 --> 14:24.200
+einfach nur schlecht dokumentiert. Ja, oder bei den Entwicklungswerkzeugen der Arbeit ist etwas. Ja,
+
+14:24.320 --> 14:32.040
+dann kommen ganz zuletzt die Programmierfehler, an die man schnell zuerst denkt, aber ich denke,
+
+14:32.040 --> 14:41.960
+diese Liste hier zeigt, die Fehlerquellen sind viel, viel, ja, vielseitiger als jetzt nur irgendein
+
+14:41.960 --> 14:50.880
+Programmierfehler wie bei dieser Buchleife. Ja, dementsprechend gibt es verschiedene Ebenen
+
+14:50.960 --> 14:55.560
+der Durchführung der Qualitätssicherung. Wir haben auf der einen Seite die software spezifische Ebene.
+
+14:55.560 --> 15:02.360
+Hier werden praktische Anwendungssituationen gegenübergestellt mit schriftlichen
+
+15:02.360 --> 15:14.360
+Spezifikationen. Ja, und software spezifisch natürlich auch ist der Source Code. So, und das
+
+15:14.360 --> 15:19.480
+sind Dinge, damit befasst man sich dann im Themenumfeld des Software-Engineering.
+
+15:19.480 --> 15:25.960
+Organisationsspezifisch kann man natürlich auch Qualität sicherstellen. Da geht es dann aber mehr
+
+15:25.960 --> 15:31.000
+um die Fragen der Projektorganisation und vielleicht der Schulung der Mitarbeiter.
+
+15:31.000 --> 15:39.200
+Es gibt, wenn man sich so mit Qualitätssicherung im Software-Umfeld befasst, so sieben Grundsätze
+
+15:39.200 --> 15:45.320
+des Testens. Die möchte ich Ihnen jetzt auf den nächsten beiden Folien einmal kurz vorstellen.
+
+15:45.320 --> 15:53.240
+Ja, fangen wir mit dem ersten an. Testen zeigt die Anwesenheit von Fehlerzuständen.
+
+15:53.240 --> 16:02.080
+Dass also die Situation nur ein Fehler eingetreten ist und das bewirkt halt einen Test. Und was man
+
+16:02.080 --> 16:08.680
+versuchen möchte, ist die Reduktion der Wahrscheinlichkeit des Auftrittens weiterer
+
+16:08.680 --> 16:14.720
+Fehler. Wenn man keinen Fehlerzustand gefunden hat, naja, dann heißt das aber nicht, dass die
+
+16:14.720 --> 16:22.040
+Software fehlerfrei ist. Das ist unsere übliche Erfahrung von allen, die mal Software entwickelt
+
+16:22.040 --> 16:29.720
+haben. Ja, ebenso in eine ähnliche Richtung geht ein vollständiges Testen ist unmöglich. Denken
+
+16:29.720 --> 16:36.080
+Sie mal an so ein Produkt, was wir alle kennen, Sunworld oder vergleichbar von Konkurrenzprodukten.
+
+16:36.080 --> 16:47.000
+Wie viele hunderte von Funktionen gibt es darin? Die kann man nicht alle durchtesten. Manche
+
+16:47.000 --> 16:51.040
+Funktionen werden nur sehr selten benutzt. Natürlich wird man sich auf die repräsentativen
+
+16:51.040 --> 16:59.320
+Anwendungsfälle stürzen beim Test und sehr viel versuchen auszuprobieren, klappt das alles. Aber
+
+16:59.320 --> 17:07.540
+vollständig heißt, jede einzelne Situation der Anwendung auszuprobieren, ist eigentlich nicht
+
+17:07.540 --> 17:15.840
+möglich. Ja, dritter Grundsatz greift das auf, was ich gerade eben schon angesprochen habe,
+
+17:15.840 --> 17:23.080
+frühes Testen, Sparzeit und Geld. Also nicht erst, wenn das Produkt fertig ist, sondern unter
+
+17:23.080 --> 17:32.040
+Umständen zu sehr wohl überlegten Zeitpunkten innerhalb der Entwicklung bereits Tests einplanen.
+
+17:32.040 --> 17:40.000
+Denken Sie an gerade so konzeptionelle Fehler, damit man die auch noch beheben kann. Häufung
+
+17:40.000 --> 17:46.640
+von Fehlerzuständen. Fehlerzustände sind ungleichmäßig verteilt. Das heißt,
+
+17:46.640 --> 17:52.960
+man hat unter Umständen Module, die sehr fehlerzustandsreich sind und die muss man
+
+17:52.960 --> 18:04.000
+identifizieren und dort Tests intensivieren. Vorsicht vor dem Pestizidparadoxon. Alte Tests
+
+18:04.000 --> 18:13.520
+verlieren ihre Wirkung zur Erkennung von Fehlerzuständen. Weiterentwickelte Programmteile
+
+18:13.720 --> 18:21.680
+werden nämlich so nicht erfasst. Das heißt, man hat oder das meint, wenn man viele Tests auch
+
+18:21.680 --> 18:25.200
+schon durchgeführt hat, man kann Tests ja durchaus automatisiert auch durchführen.
+
+18:25.200 --> 18:32.720
+Da gibt es ja mittlerweile auch Tests, wo man sowas machen kann. Ja, wenn ich dann einfach die
+
+18:32.720 --> 18:42.560
+bestehenden Tests nochmal automatisiert ablaufen lasse, dann habe ich zwar getestet,
+
+18:42.560 --> 18:48.360
+aber ich habe meine Tests nicht auf neu entwickelte Programmteile angepasst. Die
+
+18:48.360 --> 18:55.440
+werden also durch alte Tests nicht erfasst. Das heißt also, ich muss auch meine Tests,
+
+18:55.440 --> 19:03.400
+die ich durchführe, immer wieder auf das Programm anpassen. Ja, Testen ist kontextabhängig. Wenn ich
+
+19:03.400 --> 19:07.480
+nur Hotelbuchungen durchführen möchte. Jetzt bin ich auf einer Dienstreise und es hat sich
+
+19:07.480 --> 19:15.760
+festgestellt, ich muss bei dem Kunden noch einen Tag länger bleiben. Ja, da gibt es dann
+
+19:15.760 --> 19:21.400
+unterschiedliche Situationen. Entweder sitze ich bei dem Kunden noch im Büro und darf dessen Rechner
+
+19:21.400 --> 19:27.800
+benutzen und kann dann am Desktop vielleicht mein Hotelzimmer für die eine Nacht buchen oder aber
+
+19:27.800 --> 19:37.200
+ich bin schon unterwegs, sitze an der Bushaltestelle oder auf dem Bahnsteig und muss über
+
+19:37.200 --> 19:49.520
+irgendwelche mobilen Devices mein Hotelzimmer reservieren. Ja, also das Prinzip ist der gleiche
+
+19:49.520 --> 19:58.040
+Anwendungsfall, aber ich habe einen unterschiedlichen Kontext. Ja, und weiterer Grundsatz des Testens,
+
+19:58.040 --> 20:06.560
+der letzte. Das ist ein Trugschluss. Keine Fehler gefunden bedeutet ein brauchbares System. Das ist
+
+20:06.560 --> 20:18.800
+überhaupt nicht der Fall. Software-Tests sind immer Stichproben. Ja, und denken Sie auch daran,
+
+20:18.800 --> 20:25.200
+Endnutzer, die können Erwartungen und Erfahrungen mit Alt- und Konkurrenzprodukten einbringen und
+
+20:25.200 --> 20:32.840
+haben davon eben auch ihre eigene Zugänge oder Zugangsweise zu einem bestehenden Produkt. Jetzt
+
+20:32.840 --> 20:44.800
+kann man Fehler kategorisieren. Ja, das möchte ich mal relativ kurz halten. Fehlerwirkung,
+
+20:44.800 --> 20:51.200
+Fehlerhandlung, Fehlerzustand. Zustand ist, wenn der Fehler einfach nur vorliegt. Fehlerwirkung ist
+
+20:51.200 --> 20:59.200
+das, was daraus wirklich gemacht wird. Schauen wir mal hier auf zwei Dinge, die mir besonders
+
+20:59.200 --> 21:06.160
+wichtig sind bei den Testen von Software-Produkten. Da ist nämlich einerseits der Begriff der
+
+21:06.160 --> 21:13.600
+Verifikation und andererseits der Validierung. So, und die Verifikation, dabei handelt es sich um
+
+21:13.600 --> 21:22.360
+die Sicherstellung, dass alle Teilergebnisse von Projektentwicklungsphasen konsistent sind. Das
+
+21:22.360 --> 21:27.800
+heißt, hier gleiche ich mein Softwareprodukt ab mit dem Pflichtenheft. Ich habe also eine Vorgabe
+
+21:27.800 --> 21:35.680
+und prüfe, ist das jetzt richtig umgesetzt, was im Pflichtenheft drin steht? Sind die
+
+21:35.680 --> 21:43.800
+funktionalen und nicht funktionalen Anforderungen von der Spezifikation richtig umgesetzt? Ja,
+
+21:43.800 --> 21:52.240
+wurde also das System technisch richtig entwickelt. Das kann ich sogar machen, ohne dass ich anwende
+
+21:52.240 --> 21:59.480
+einbeziehe. So, und denken wir mal an unsere Praktikumsaufgaben. Da haben wir ja diese
+
+21:59.480 --> 22:08.240
+Vermögensverwaltung oder auch die Projektbeantragungssoftware und die Frage, die man hier stellen kann ist eben,
+
+22:08.240 --> 22:17.200
+funktioniert die Vermögensverwaltung? Kann ich ein Projekt hier beantragen? Funktioniert das? Und das heißt,
+
+22:17.200 --> 22:22.440
+das ist also die Frage hier zu stellen, wurde das System richtig entwickelt? Das ist die
+
+22:22.440 --> 22:32.360
+Verifikation. Aber ganz wichtig ist aber auch, und zwar aus Nutzer, aus Kundensicht, die Validierung.
+
+22:32.360 --> 22:38.600
+Ich meine, als Kunde, da gehe ich mal davon aus, dass das, was ich da angeboten bekomme, wofür ich
+
+22:38.600 --> 22:45.280
+bezahlt habe, dass das richtig entwickelt wurde. Sprich, dass das Produkt funktioniert. Aber,
+
+22:45.280 --> 22:51.640
+das ist, ich sag mal, eine notwendige Voraussetzung oder eine Minimalforaussetzung. Viel wichtiger ist
+
+22:51.640 --> 22:59.520
+für mich als Nutzer, aber ist das denn valide? Das heißt, sind denn die Anforderungen, die ich
+
+22:59.520 --> 23:06.640
+als Kunde habe, erfüllt worden? So, bei der Validierung, da ist also die Einbeziehung des
+
+23:06.640 --> 23:15.280
+Kunden oder des Nutzers notwendig. Ja, da brauche ich also sowohl die Systemanalyse als auch die
+
+23:15.280 --> 23:21.880
+Spekation, Spezifikation und das Endprodukt. Und hier geht es um die Frage, wurde das richtige
+
+23:21.880 --> 23:28.560
+System entwickelt? Ja, es kann ja funktionieren, aber wenn ich in meiner Vermögensverwaltung dann
+
+23:28.560 --> 23:36.400
+die Immobilien nicht richtig erfassen kann, na dann kann ich das vielleicht nicht richtig benutzen.
+
+23:36.400 --> 23:43.480
+Oder wurde etwa nicht unterschieden zwischen Aktienwertpapieren und festverzinslichen
+
+23:43.480 --> 23:48.720
+Wertpapieren. Diese Dinge haben sehr unterschiedliche Datenstrukturen, wenn man sie erfassen möchte.
+
+23:48.720 --> 23:53.080
+Wenn ich eines davon nicht erfassen kann, na dann kann ich meine Vermögensverwaltung nicht richtig
+
+23:53.080 --> 24:04.120
+verwenden. Ja, genauso Beispiele ließen sich finden für die Projektbeantragung. Ja, oder fehlen bei
+
+24:04.200 --> 24:11.200
+der Vermögensverwaltung etwa die Grafiken. Dann kann ich keine Struktur meines Vermögens analysieren.
+
+24:11.200 --> 24:18.360
+Das sind dann die Fragen, die gehen dahin, kann der Nutzer mit dem, was da entwickelt worden ist,
+
+24:18.360 --> 24:28.560
+tatsächlich was anfangen? Und wenn das bejaht werden kann, dann ist das Produkt valide. Dann
+
+24:28.560 --> 24:38.120
+kann man mit dem Produkt richtig arbeiten. Immer, als wenn eine Bachelorarbeit wäre, ein Ergebnis,
+
+24:38.120 --> 24:46.200
+wenn Sie da ein Softwareprodukt erstellt haben, da sollten Sie immer validieren. Verifizieren
+
+24:46.200 --> 24:52.680
+natürlich auch, aber in dem gleichen Sinne, wie eben gesagt, dass ein Produkt funktioniert. Na,
+
+24:52.680 --> 24:58.520
+da gehen wir mal von aus, dass Sie da selbstständig genug dann gearbeitet und geprüft und getestet
+
+24:58.520 --> 25:06.320
+haben, dass das System richtig entwickelt worden ist. Aber dass der Benutzer damit auch was anfangen
+
+25:06.320 --> 25:19.280
+kann, das ist die wichtige Aussage und die zentrale Aussage. Und ja, wenn das eben nicht der Fall ist,
+
+25:19.280 --> 25:24.640
+dann landet im einfachsten Fall so ein Produkt nur im Schrank, wird also nicht weiter benutzt.
+
+25:24.640 --> 25:31.240
+Im schlimmsten Fall gibt es Rechtsstreitereien, ob da jemand dafür bezahlt. So, ordnen wir die
+
+25:31.240 --> 25:39.960
+Tests mal in den Softwareentwicklungsprozess ein. Wir haben ja mal diesen Softwareentwicklungsprozess
+
+25:39.960 --> 25:48.760
+gehabt in der folgenden Struktur. Vorstudie und Anforderungsanalyse, das Grobdesign mit der
+
+25:48.760 --> 25:54.240
+Komponentenbildung. Dann kommt die iterativ inkrementelle Entwicklung und Systemtest und
+
+25:54.240 --> 26:00.760
+Einführung. So, und diese beiden Schritte hier, iterativ inkrementelle Entwicklung und Systemtest,
+
+26:00.760 --> 26:12.160
+da ist das, wo man spätestens mit Tests beginnen sollte. So, wie testet man denn einfach? Ja,
+
+26:12.160 --> 26:19.040
+da sollte man auch wieder möglichst systematisch vorgehen. Das heißt, ein Test planen, dann muss
+
+26:19.040 --> 26:24.280
+der Test vorbereitet werden. Er muss dann wirklich durchgeführt werden und das Ergebnis muss
+
+26:24.280 --> 26:29.200
+dargestellt werden. Ich spreche hier jetzt nicht mehr von kleinen Tests, ob jetzt irgendeine Methode
+
+26:29.200 --> 26:38.920
+funktioniert, sondern wirklich von der Validierung, dass das Produkt also das tut, was es tun soll.
+
+26:38.920 --> 26:46.000
+So, und da gibt es jetzt innerhalb der Testplanung und Vorbereitung ein paar Dinge, mit denen sollte
+
+26:46.000 --> 26:51.000
+man sich auseinandersetzen. Da gibt es erstmal den Testrahmen. Da werden die Rahmenbedingungen
+
+26:51.000 --> 26:58.880
+für die Durchführung festgelegt. Die Kriterien für Start und Ende eines Testlaubs. In einem
+
+26:58.880 --> 27:04.960
+Meilenstein wird eine gewisse Funktionalität definiert. Ja, und da hängen dann Start und
+
+27:04.960 --> 27:12.360
+Ende in Mitteln. Welche Kriterien gibt es, sodass man sagen kann, ein Test ist gelungen oder hat
+
+27:12.360 --> 27:18.120
+auch nicht funktioniert? Dazu gehören Fragen, ja, was soll denn getestet werden? Wie detailliert,
+
+27:18.120 --> 27:25.640
+also welche Granularität soll denn bei den Tests an den Tag gelegt werden? Was sind so Ergebnisse,
+
+27:25.640 --> 27:32.720
+die wir hier erwarten? Ja, und wie sehen die Endprodukte eines Tests aus und die
+
+27:32.720 --> 27:38.160
+Kommunikationswege? Das heißt genauer, wie werden denn Fehler überhaupt dokumentiert? Das kann zum
+
+27:38.160 --> 27:44.600
+Beispiel in einem schriftlichen Bericht sein. Wie werden Fehler kategorisiert? Eine Kategorisierung
+
+27:44.600 --> 27:52.080
+kann man über Prioritätsstufen herbeiführen. Prioritätsstufen heißt, welcher Fehler muss als
+
+27:52.080 --> 27:57.400
+erstes beseitigt werden und welcher ist mehr kosmetischer Art. Muss also zunächst mal noch
+
+27:57.400 --> 28:06.040
+nicht eingegangen werden. Ja, und wer erhält denn welche Testergebnisse? Die Entwickler oder der
+
+28:06.040 --> 28:12.600
+Projektleiter oder vielleicht noch andere Personen? Ja, im Testrahmen muss man sich dann überlegen,
+
+28:12.600 --> 28:19.440
+welche Art von Tests werden denn durchgeführt, mit welchen Methoden wird getestet? Ja, und dann
+
+28:19.440 --> 28:25.160
+muss natürlich auch die Testplattform konfiguriert werden. Das heißt, dazu müssen Anforderungen an
+
+28:25.160 --> 28:33.120
+die Art und Software festgelegt werden, einschließlich der Systemumgebung. In der
+
+28:33.120 --> 28:38.520
+Regel setzt man dafür ja dann irgendein Testsystem auf, was noch nicht produktiv ist,
+
+28:38.520 --> 28:44.600
+um da nicht im schlechten Fall irgendwelchen Schaden anzurichten. Ja, und die Testdaten müssen
+
+28:44.600 --> 28:52.120
+spezifiziert werden. Irgendwoher brauche ich vielleicht auch mal ein paar Daten für meinen
+
+28:52.120 --> 29:06.520
+Tests. So, dann muss ich mich weiter damit befassen, welche Teststrategie möchte ich
+
+29:06.520 --> 29:16.520
+denn verfolgen. Ja, dazu gehört insbesondere, welche Testsziele möchte ich denn mir stecken.
+
+29:16.520 --> 29:24.920
+Zum Beispiel brauche ich einen korrekten Zugriff auf die Datenbasis. Wie sieht es mit einer
+
+29:24.920 --> 29:32.760
+Fehlerfindungsreiter aus? Mit einem schnellen Test, wie halte ich den Aufwand da gering oder will
+
+29:32.760 --> 29:37.800
+ich da mehr investieren? Da muss ich mir rechtzeitig darüber Gedanken machen, unter Umständen mit dem
+
+29:37.800 --> 29:44.440
+Kunden auch absprechen oder zumindest muss ich mit dem Budget das in Einklang bringen mit den
+
+29:44.520 --> 29:52.720
+Anzahl Personentagen, die ich für so einen Test einplane. Und wenn ich das weiß, kann ich
+
+29:52.720 --> 30:02.080
+entsprechend Antworten geben, wie intensiv teste ich denn, wie viel Aufwand stecke ich da rein.
+
+30:02.080 --> 30:10.320
+Ja, natürlich muss ich mir dann auch klar werden, wie führe ich die Tests durch, was die
+
+30:10.320 --> 30:16.960
+Wiederholbarkeit von Tests angeht, wenn der nicht wiederholbar ist. Ja, dann ist das so mit der
+
+30:16.960 --> 30:23.840
+Absicherung des Testergebnisses so eine Sache. Wenn ich einen Test zweimal mache, muss auch beide
+
+30:23.840 --> 30:32.000
+mal der gleiche Fehler herauskommen. So, ja, und welche Anforderungen an die Tester stelle ich denn?
+
+30:32.000 --> 30:38.480
+Wir haben, ist zwar ein etwas anderes Thema, kann man hier aber durchaus übertragen, bei der
+
+30:38.480 --> 30:44.760
+Dokumentation auch mal über verschiedene Adressaten gesprochen. Da haben wir unterschieden, sind das
+
+30:44.760 --> 30:52.520
+wenig Nutzer, sind das Experten. Solche Kriterien kann man hier auch anlegen bei den Testzielen.
+
+30:52.520 --> 30:58.040
+Wen brauche ich denn, um meine Testziele zu erreichen? Möchte ich da eben so ein wenig Nutzer oder so ein
+
+30:58.040 --> 31:07.920
+Experten hier in den Test einbeziehen? Ja, die dazu passende Teststrategie muss ich definieren,
+
+31:07.920 --> 31:13.560
+das heißt, ich muss Prioritäten von Testfällen setzen, da ich, wir haben ja vorhin schon gesagt,
+
+31:13.560 --> 31:19.320
+man kann nicht bei einem großen Produkt alle möglichen Anwendungsfälle durchtesten. Das heißt
+
+31:19.320 --> 31:24.840
+also auch hier muss ich Testfälle priorisieren. Da kann ich einerseits in meinen Use Cases hineinschauen,
+
+31:24.840 --> 31:31.840
+das sind ideale Quellen für Test Cases, aber insbesondere, wenn ich so eine Priorisierung vornehme,
+
+31:31.840 --> 31:38.720
+da sollte ich mich natürlich auch den Kunden orientieren. Was haben die für Wünsche, was ist
+
+31:38.720 --> 31:45.400
+für die Kunden am wichtigsten? Das sollte auf jeden Fall mal funktionieren und das sollte gut
+
+31:45.400 --> 31:53.200
+untersucht sein. Ja, die ebenso gehört dann dazu die Testreihenfolge der Qualitäten des Systems,
+
+31:53.200 --> 31:59.160
+da kann man ja noch ein bisschen weitergehen, hat so ein bisschen damit zu tun, was sind die Kunden
+
+31:59.160 --> 32:04.160
+Wünsche. Da können Vermarktungsaspekte dann aber auch noch eine Rolle spielen, was ist mir wichtig,
+
+32:04.160 --> 32:13.880
+was ich von meinem Produkt erzählen möchte und was es alles können soll und ja, das kann ich dann
+
+32:13.880 --> 32:23.280
+eben auch entsprechend höher priorisieren. Ja, zu den Qualitätsprioritäten, denn da gehören dann
+
+32:23.280 --> 32:31.080
+ja, Korrektheitssicherheit, die Performance, was jetzt die eine schnelle Entwicklung angeht,
+
+32:31.080 --> 32:38.000
+das heißt eine baldige Verfügbarkeit, all dazu muss ich mir im Vorfeld Gedanken machen und klar
+
+32:38.000 --> 32:45.800
+sagen, worauf lege ich hier welchen Wert. Wie sieht es mit dem Aufwand aus, mit dem Deckungsgrad,
+
+32:45.800 --> 32:56.280
+mit Anforderungen, ja und mit der Flexibilität auch, falls sich Anforderungen durchaus mal ändern.
+
+32:56.280 --> 33:07.360
+So, der Testgegenstand und die Testfälle. Ja, das muss man natürlich immer pro Produkt
+
+33:07.360 --> 33:17.520
+oder Teilprodukt angeben. Das heißt, die zu testenden Systeme oder Teilsysteme auf Klassenebene,
+
+33:17.520 --> 33:24.560
+naja, wenn ich sehr fein Granular testen möchte auch das. Ja, und dann muss ich angeben, was sind
+
+33:24.560 --> 33:31.400
+denn die zu testenden Eigenschaften. Ja, will ich jetzt einen Anwendungsfall testen oder bei
+
+33:31.400 --> 33:40.880
+detaillierter Granularität, welche Methode will ich testen, will ich in Algorithmus oder sowas
+
+33:40.880 --> 33:51.520
+gar testen. Ja, unter Umständen kann man hier auch durchaus abgrenzen und sagen, so, welche
+
+33:51.520 --> 33:57.120
+Eigenschaften unter Umständen nicht getestet werden sollen, das hängt dann eben von der
+
+33:57.120 --> 34:03.400
+Priorisierung ab, wenn die Ressourcen, die für einen Test zur Verfügung stehen, eben sehr
+
+34:03.400 --> 34:13.000
+eingeschränkt sind. Ja, die Auflistung der einzelnen Testfälle, das ist eigentlich so das, was hinterher
+
+34:13.000 --> 34:20.040
+dabei rauskommt und was sich auch immer ganz gut macht im Projekt und Abschlussarbeiten, wenn man
+
+34:20.040 --> 34:28.840
+kundtut, was hat man denn alles getestet, was, ja, wollte man testen und was war erwartet worden,
+
+34:28.840 --> 34:35.960
+was tatsächlich ausgekommen. So, und da macht man detaillierte Angaben zu Testrahmen und Teststrategie
+
+34:35.960 --> 34:44.120
+und zwar für jeden Testfall. Den Zeitplan darf man nicht vergessen, wenn man Tests plant und
+
+34:44.120 --> 34:52.320
+vorbereitet, eine detaillierte zeitliche Planung ist dazu notwendig, die Termine für die Tests,
+
+34:52.320 --> 35:03.400
+die Zeiten für Vor- und Nachbereitung. Ja, und so ein Testzeitplan, der gibt eben oder Projektzeitplan,
+
+35:03.400 --> 35:13.520
+der gibt den Rahmen vor, wann getestet werden soll. Der Testzeitplan, der ist allerdings wesentlich
+
+35:13.520 --> 35:24.840
+detaillierter als ein Projektzeitplan, der enthält eben spezifische Informationen über Testaktivitäten,
+
+35:24.840 --> 35:35.440
+die für den Projektablauf an sich noch irrelevant wären, die aber für den Testablauf wichtig sind.
+
+35:35.440 --> 35:43.280
+So, Zusammenfassung im Testplan, da kann man also sagen, die Ziele, da geht es darum, was soll
+
+35:43.280 --> 35:50.200
+erreicht werden, beim Umfang, was soll getestet werden, bei den Methoden, wie soll getestet werden,
+
+35:50.200 --> 35:57.360
+bei den Ressourcen, ja, wer testet, mit welchen Werkzeugen. Ja, und der Zeitplan ist einfach, wann
+
+35:57.360 --> 36:09.880
+wird getestet und die Verantwortlichkeit, wer ist für was zuständig. So, wenn man getestet hat,
+
+36:09.880 --> 36:17.120
+hatten wir ja vorhin schon gesagt, da ist es wichtig festzuhalten, was dabei rausgekommen ist
+
+36:17.120 --> 36:23.040
+und wie mit diesen Ergebnissen weiter umgegangen wird. Das heißt, wir müssen hergehen, erstmal
+
+36:23.040 --> 36:31.720
+ein Testprotokoll erstellen. Bestandteile dessen ist einerseits, ja, da sollte man sagen, um welchen
+
+36:31.720 --> 36:41.080
+Testfall handelt es sich bei diesem Protokoll. Wie sieht die Einzeltestfallspezifikation aus?
+
+36:41.080 --> 36:48.120
+Das kann sein, wenn man da so einen Test hat, da habe ich die Frau Meier als Testkandidatin,
+
+36:48.120 --> 36:57.080
+also als Person, als Mitarbeiterin, die das neue Produkt testet, die also nicht selbst getestet wird,
+
+36:57.080 --> 37:04.880
+sondern aktiv selbst testet. Ja, da sollte ich in so einem Protokoll etwas sagen, wer war das,
+
+37:04.880 --> 37:09.680
+wann war das, wo wurde das durchgeführt. Solche Tests kann man ja im Hause des Kunden machen,
+
+37:09.680 --> 37:15.480
+sowas kann man aber durchaus auch, ja, vielleicht im Hause der Entwicklungsformer machen. Hängt
+
+37:15.480 --> 37:22.880
+etwas von den Örtlichkeiten und den Beziehungen zwischen Kunden und Auftragenehmern ab. Ja,
+
+37:22.880 --> 37:31.520
+gibt es Abhängigkeiten zwischen den Testfällen? Welche Aufgaben hat die also bearbeitet? Das
+
+37:31.520 --> 37:39.400
+wäre hier noch die Testfälle-Identifikation oder die Einzelfallspezifikation. Welche Voraussetzungen
+
+37:39.400 --> 37:45.280
+sind an die Umgebung gestellt, in der da getestet wird? Ist das eine normale Büroumgebung? Ist das
+
+37:45.280 --> 37:53.520
+eine großhafte Umgebung? Oder, ja, je nachdem, wer das ist und was das für eine Applikation ist.
+
+37:53.520 --> 37:57.760
+Wir haben da auch so eine Applikation im Hause, die wird von Hausmeistern benutzt. Da habe ich
+
+37:57.760 --> 38:04.640
+mal eine ganz andere Umgebung. Da können Teile von der Software auch mal durchaus im Keller
+
+38:04.640 --> 38:12.160
+benutzt werden, wenn die da in irgendwelchen Geräten irgendwas ablesen müssen und da eine
+
+38:12.160 --> 38:19.840
+Software haben, die halt abgelesene Messwerte erfasst oder wo Fehlerberichte mal kurz geschrieben
+
+38:19.840 --> 38:29.960
+werden. Stichpunkte hier in der Heizung, der Öltank leckt oder irgend sowas. Das kann man unter
+
+38:29.960 --> 38:37.600
+Umständen dann sofort lokal aufnehmen und ja in das Produkt dann weiter einschließen lassen.
+
+38:38.560 --> 38:47.360
+Hier ist also gut zu protokollieren, wer hat was wann getestet. So, und diese Protokolle,
+
+38:47.360 --> 38:54.400
+die werden dann anschließend zusammengefasst in einen Testbericht, da werden die Fehlersituationen
+
+38:54.400 --> 39:11.000
+beurteilt, die Gesamtsituation kommentiert. Ja, das ist sozusagen das Ergebnis. Die Testmethoden,
+
+39:11.000 --> 39:17.720
+da haben wir so eine gewisse Palette Blackbox-Test, Whitebox-Test. Da möchte ich hier an dieser
+
+39:17.720 --> 39:40.920
+Stelle nicht mehr drauf eingehen, sondern hier noch auf unterschiedliche Varianten von Tests
+
+39:40.920 --> 39:49.160
+eingehen. Mal ganz kurz, und zwar zum einen kann man hergehen, Konfigurationen eines Systems
+
+39:49.160 --> 39:56.000
+überprüfen und da geht es einfach um die Lauffähigkeit des Systems auf einer Zielplattform.
+
+39:56.000 --> 40:03.080
+Auf einer Zielplattform, das heißt sie haben irgendwie entwickelt auf ihrem PC und entweder
+
+40:03.080 --> 40:08.440
+muss das jetzt in einer Arbeitsumgebung stattfinden auf einem größeren Rechner oder aber auch auf einem
+
+40:08.440 --> 40:14.080
+lokalen Device. Ja, der wichtige Unterschied ist, der meistens ist oder oftmals ist die
+
+40:14.080 --> 40:22.240
+Entwicklungsplattform ungleich der produktiven Plattform, wo das Produkt benutzt wird. Und da
+
+40:22.240 --> 40:28.120
+muss man eben sehen, auch wenn man eigentlich auf der Entwicklungsplattform alles so schön rund
+
+40:28.120 --> 40:37.560
+funktionierend hat, das muss auf der Zielplattform gar nicht so der Fall sein. Ja, was man dann auch
+
+40:37.560 --> 40:44.000
+testen sollte, ist die Installation, ist eine problemlose Installation auf dem Zielsystem möglich?
+
+40:44.000 --> 40:52.920
+Wie funktioniert das? Wie bringe ich meine entwickelte Produktfassung auf mein Zielsystem?
+
+40:52.920 --> 40:59.800
+Geht das über den Play Store oder das ist eine einfache Sache? Bei größeren Rechnersystemen gibt
+
+40:59.800 --> 41:07.400
+es auch entsprechende Verfahren, aber da muss ich eben schauen, habe ich hier alle Schritte berücksichtigt
+
+41:07.400 --> 41:14.200
+um mein Produkt hier in Betrieb nehmen zu können. Ja, der Funktionstest, das ist halt der Test erfüllt,
+
+41:14.200 --> 41:20.560
+das System die Anforderungen laut Anforderungsbeschreibung. Dann haben wir so einen Leistungstest, da
+
+41:20.560 --> 41:28.960
+geht es ja unter Realbedingungen soweit konstruierbar darum, wie werden die Ressourcen ausgelastet,
+
+41:28.960 --> 41:35.240
+wie sind die Antwortzeiten, wie ist das Lastverhalten, wenn ich da viele Leute vorsetze,
+
+41:35.240 --> 41:45.680
+viele Nutzer oder wenn Nutzer viele Transaktionen halt durchführen. So, hier muss man das erwartete
+
+41:45.680 --> 41:51.360
+Verhalten für jeden Einzelfall genau beschreiben und dann die Abweichungen entsprechend dokumentieren.
+
+41:51.360 --> 42:00.480
+Ja, Benutzbarkeitstests, hier kann man überprüfen, ist das unter ergonomischen Gesichtspunkten so
+
+42:00.560 --> 42:09.040
+etwas oder gut verwendbar. Das ist bereits in sehr frühen Entwicklungsphasen, wenn sie so horizontale
+
+42:09.040 --> 42:15.400
+Prototypen angefertigt haben, bereits möglich. Ja, das könnte ein eigenes Teilprojekt sogar sein,
+
+42:15.400 --> 42:21.640
+die Software Usability. Wenn man sowas zu einem späten Zeitpunkt macht, dann ist man meistens nur
+
+42:21.640 --> 42:26.120
+noch in der Lage somarisch zu beurteilen, eben wie vorhin gesagt, weil das Produkt schon sehr
+
+42:26.120 --> 42:33.920
+weit entwickelt ist und größere Änderungen, dann sehr viel Aufwand durchführen. Ja, Sicherheitstests
+
+42:33.920 --> 42:42.520
+gegebenenfalls durchführen, je nachdem welche Sicherheitsanforderungen davorliegen. Interoperabilitätstests,
+
+42:42.520 --> 42:51.560
+damit darunter versteht man so Schnittstellen zu anderen Systemen, gerade bei Kommunikationsprodukten.
+
+42:51.560 --> 42:57.680
+Ja, und wie sieht denn das aus? Und das vergisst man leicht, wenn so ein größeres Produkt, wo viele
+
+42:57.680 --> 43:05.760
+daran arbeiten, mal komplett abgeschaltet werden müssen. Also Neustart, wie einfach ist der möglich?
+
+43:05.760 --> 43:12.200
+Wenn wir jetzt alle für unseren Desktop-PC sitzen, ist das eine Trivialität. Aber wie ist das,
+
+43:12.200 --> 43:17.600
+wenn ich da jetzt mal 500 User habe, über Deutschland verteilt, ist das dann auch noch
+
+43:17.600 --> 43:25.720
+so einfach möglich? Sollte man bei einem systematisch durchgeführten Test auch mit
+
+43:25.720 --> 43:32.160
+berücksichtigen. Ja, und die Regulationstests, das sind also die Tests, wo immer wieder bereits
+
+43:32.160 --> 43:42.000
+durchgeführte Tests nochmal ausgeführt werden, aber ergänzt um Tests für neue Features, die
+
+43:42.000 --> 43:52.400
+sollte man immer wieder laufen lassen. So, damit habe ich die Thematik des Tests oder des Testens
+
+43:52.400 --> 44:00.920
+innerhalb des Software-Engineerings angesprochen. Man könnte zum Thema Software-Engineering oder
+
+44:00.920 --> 44:06.560
+zum Thema Test innerhalb des Software-Engineerings oder Qualitätssicherung eine eigene
+
+44:06.560 --> 44:11.760
+Lehrveranstaltung machen und deutlich tiefer drin einsteigen. Hier in dieser Veranstaltung
+
+44:11.760 --> 44:18.160
+ging es ja darum, den Software-Entwicklungsprozess von den Requirements bis zur Fertigstellung anzusprechen
+
+44:18.160 --> 44:27.280
+in allen Detailfassetten und da ist das Testen nur eine Facette. Wenn wir uns oder wenn Sie sich mit
+
+44:27.280 --> 44:37.000
+dem Testen weiter befassen möchten, dann kann man das in so Veranstaltungen, Vertiefungen des
+
+44:37.000 --> 44:44.360
+Software-Engineerings durchaus machen. Da geht man dann sehr ausführlich darauf ein.
+

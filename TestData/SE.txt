@@ -1,0 +1,352 @@
+So, im letzten Kapitel der Vorlesung Software Engineering 1 oder Einführung in der Software
+Engineering dreht es sich um das Thema Software Test. Ja, schauen wir uns mal an, welche Probleme
+gibt es mit Software Tests. Wir hatten ja schon mal zwei oder eine ganze Reihe von Beispielen am
+Anfang der Vorlesung, wo wir darüber gesprochen haben, ja, warum ist es überhaupt sinnvoll,
+strukturiert an eine Softwareentwicklung heranzugehen. Da will ich mal zwei Beispiele
+herausgreifen. 1979 ist zwar schon ein älteres Beispiel, aber war ziemlich teuer, sage ich mal,
+einfach, hat deutliche Konsequenzen gehabt. Das ist ein sehr einprägsames Beispiel.
+Der Steuercomputer einer Venus-Runde, der führte folgenden Befehl aus. Du3 i gleich 1.3. Ja,
+dass die Du-Schleife ist in Vortran gleich bedeutend, um in einer geringfügig anderen
+Syntax wie die Vorschleife in Java oder in anderen Programmiersprachen, also eine einfache
+Zellschleife. So, also hier sollte einfach eine Schleife programmiert werden. Ja,
+nur hier gab es ein kleines Problem. Die Zuweisung an sich war gültig. Anstelle von diesem Du können
+sich so ein Vor vorstellen. Die 3, das kennzeichnet einfach die letzte Zeile des Schleifenkörpers.
+Ja, und dann kommt die Schleifenbedingung i gleich 1.3. Das wurde erfolgreich kompiliert. Ja,
+und dementsprechend wurde also kein Fehler festgestellt. Das Ganze lief und die Rakete
+flog und ja, flog leider an ihrem Ziel vorbei. Sie können sich vorstellen,
+paar Millionen Dollar sind da leider in Rauch oder aufgegangen bzw. ins Nirwana gegangen.
+Der Punkt ist nämlich hier der, richtig wäre gewesen, hier sollte einfach eine Schleife
+dreimal durchgelaufen werden und zwar mit den Werten i gleich 1, i gleich 2, i gleich 3. So,
+und diese Schleife, die Schleifenanfang und Schleifenende wie in einer Vorschleife,
+das wird hier eben so aufgezählt. Ja, Schleifenanfang und Schleifenende des Schleifenzählers.
+Syntaktisch gültig ist das Ganze hier oben in Fortran, aber deswegen, Fortran ist eine
+ältere Programmiersprache, wird teilweise noch genutzt. Ja, gültig ist das, weil man in Fortran
+auch über Gleitkommawerte iterieren darf. Ja, da dürfte ich also von 1,3 bis 1,7 iterieren und
+das hier wäre jetzt also einfach ein Schleifenanfang und als Schleifenanfang ist der
+Wert 1,3 angegeben, also syntaktisch richtig. Ja, und wenn man sowas nicht ordentlich testet,
+dann passiert halt schon mal größerer Schaden. Ein anderes Beispiel war der 1984 im Computer
+meint, eine Überlaufgefahr für einen Staudamm in Frankreich zu erkennen und dementsprechend
+öffnete er einfach mal zwei Schleusentore automatisch. Das führte zu einer Überschwemmung
+und viele weitere Beispiele haben wir damals besprochen, auch aus der Neuzeit. Sie entsinnen
+sich vor ein paar Jahren, da wurde eine Wahlbeteiligung von über 100 Prozent irgendwie
+ermittelt, was ja nun auch keinen Sinn macht. Also auch da sind irgendwelche Prüfungen nicht
+ordentlich gewesen. Ja, schauen wir uns mal weiter an, womit sollte man sich denn genauer befassen,
+wenn es sich ums Testen handelt. Testen ist einfach nur ein kurzer Begriff, da kann man
+was ganz eng abgegrenztes mitmeiden, dass man einfach ausprobiert ist, ein Programm laufig
+oder aber man kann aber auch übergeordnete Prozesse darunter verstehen. Deswegen gehen
+wir hier jetzt mal kurz auf andere Begriffe ein. Und zwar, Test hat ja immer was mit Qualität zu
+tun. Und ja, dementsprechend sind in diesem Umfeld das Testen zu Begriffe üblich, die sich
+mit Qualität befassen. Und schauen wir zuerst mal auf den Beruf des Qualitätsmanagements.
+Darunter versteht man alle organisatorischen Maßnahmen oder Tätigkeiten und Maßnahmen zum
+Leiten und Lenken einer Organisation bezüglich Qualität, sind also Tätigkeiten und Maßnahmen,
+die da eine Rolle spielen. Dazu gehörten zum Beispiel die Festlegung von Qualitätszielen,
+die Qualitätsplanung, die Qualitätssicherung oder auch die Qualitätsverbesserung. Das ist ein
+zentraler Bestandteil von Arbeitsprozessen in ganz vielen Branchen. Qualitätsmanagement,
+also in der Automobilindustrie ist das das A und O. Sie wissen, dass wir heutzutage sehr
+hochwertige Automobile haben, aber diese Hochwertigkeit oder diese Wertigkeit bekommt
+man nur durch ein angemessenes Qualitätsmanagement in den Kopf. In der Luftfahrtindustrie ebenso,
+da spielt das Qualitätsmanagement nicht nur in den Komfortbereich hinein, sondern schlichtweg
+in die Sicherheit. Das sind nur zwei Beispiele von Branchen. Es gibt, eigentlich soll ich da
+drei Prümpchen hinter machen, noch ganz viele weitere Beispiele. Ab zur Ganzen vom Qualitätsmanagement
+ist die Qualitätssicherung, das ist nämlich eigentlich nur ein Teil des Qualitätsmanagements,
+wie sich hier oben auch ausdrückt. Hier oben habe ich die Qualitätssicherung als Teil des
+Qualitätsmanagements schon aufgeführt. Hierbei geht es einfach um die Einhaltung der vereinbarten
+Arbeitsprozesse zur Vermeidung von Fehlerzuständen, also um die Analyse der Ursachen für Fehler.
+Das Qualitätsmanagement dient der Erkennung, also dem Testen, unter Beseitigung von Fehlerzuständen.
+Testen ist also eigentlich in diesem Sinne hier nur die Erkennung von Fehlerzuständen.
+Ja, und ein Test ist also auch ein Mittel zur Erreichung eines angemessenen Qualitätsniveaus.
+Ja, was wir also festhalten können ist, Test ist ungleich von Qualitätssicherung und eigentlich hätte
+ich das hier auch noch erweitern können. Qualitätssicherung ist ungleich mit Qualitätsmanagement,
+aber ich denke, dass es hier jetzt durch die Folie auch zum Ausdruck kommt. Welche Probleme
+gibt es denn bei der Durchführung von Softwaretests? Wir befassen uns hier jetzt in dieser Stunde
+natürlich nur mit dem enger eingegrenzten Begriff der Softwaretests. Und zum einen haben wir den
+Aufwand. Bei komplexen Produkten gibt es da einen erhöhten Zeit- und Personalaufwand. Aber man sollte
+gleich sich bewusst machen, wenn man hochwertige Produkte seriös entwickeln möchte, egal ob das
+in der Automobilindustrie ist, Luftfahrt, die haben wir genannt, oder auch so Unternehmen wie Siemens,
+also große Unternehmen oder auch Unternehmen wie SAP, die größere Softwareprodukte erstellen,
+die leisten sich auch eigene Testabteilungen. Ich kenne das aus meinem eigenen Umfeld heraus auch.
+Da bin ich Softwareentwicklungsabteilungen begegnet, die gar nicht so groß waren wie
+jetzt so eine Siemens oder IBM oder SAP. Nee, das waren 30-40 Leute, aber die hatten eine kleine
+Testabteilung für ihre Produkte schon installiert. Die bestand dann eben nur aus zwei Mitarbeitern.
+Aber immerhin, der große Vorteil ist, wenn ich da eine eigene Abteilung rausmache, und das ist
+vielleicht die wichtigste Aussage hierbei, dass Entwicklung und Test von verschiedenen Personen
+ausgeführt werden sollten. Denn der Entwickler, das was man selbst entwickelt hat, das kennt man
+einfach zu gut. Man hat einen gewissen Blickwinkel da drauf und denkt an verschiedene Konstellationen,
+wie man das Produkt auch verwenden könnte, gar nicht. Und da ist es dann sehr praktisch,
+wenn da jemand aus einem anderen Blickwinkel heraus rangeht und das dann eben nur testet. Der
+hatte mit der Entwicklung gar nichts zu tun. Wie das mit welchen tollen Algorithmen gebaut worden
+ist, ist untergeordnet. Der schaut nur danach, was ist das Ergebnis, was klappt vielleicht nicht.
+Deswegen ist diese Trennung auf personaler Ebene da außerordentlich hilfreich und macht eben auch
+schon bei kleinen Organisationseinheiten Sinn. Ja, weiteres Problem ist die destruktive Grundaufgabe
+beim Testen. Ein Test dokumentiert bereits gemachte Fehler. Ja, in der eigenen oder eigene Fehler oder
+in der eigenen Abteilung. Da kommt es eben auch nochmal drauf an, wenn das der Entwickler ist,
+der selbst testet. Natürlich testet er immer seine einzelnen Methoden, seine einzelnen Unterprogramme,
+aber so größere Tests, na ja, wer stellt schon gerne fest, was habe ich jetzt in größerem Stil
+verkehrt gemacht. Das ist natürlich auch nicht so eine tolle Aufgabe, auch wenn das Umfeld
+entsprechend geartet ist. So, das sind so zwei Problembereiche, wo man mal schnell dran denken
+könnte, ach, hier kann man auch ein bisschen dran sparen. Na, war das einerseits zeitaufwendig und
+damit personalaufwendig und na ja, eine schöne Aufgabe ist das auch nicht. Zumindest, wenn man
+die eigenen Dinge testen soll. Aber daran zu sparen, da kann man nur vorwarnen, denn jedes
+Produkt wird getestet. Immer. Nämlich spätestens vom Endbenutzer. Ja, und wenn der Endbenutzer das
+testet und vorher zu wenig getestet worden ist, findet er vielleicht auch noch eine ganze Reihe
+von Fehlern. Und dann ist mal die Frage zu stellen, wie sieht es denn dann mit dem Kundenvertrauen aus?
+Also, da zu groß einzusparen, das sollte man sich sehr, sehr gut überlegen. Das macht ganz einfach
+gesagt, vielleicht nur einen schlechten einen. Ja, und dann kommt noch eines hinzu, der Korrekturaufwand.
+Je später hier etwas entdeckt wird, je größer ist der Korrekturaufwand. Ja, da die Entwicklung
+oftmals schon abgeschlossen ist. Ja, stellen Sie sich vor, der Endbenutzer testet was oder man
+testet etwas auch in der Testabteilung. Aber wenn die erst sehr spät ins Boot kommt, also ans Test
+kommt, dann ist die Entwicklung oftmals schon abgeschlossen. Konzeptionelle Änderungen,
+wo also im Ansatz irgendwie etwas schlecht überlegt worden ist oder einfach nicht bedacht
+worden ist, konzeptionelle Änderungen sind dann natürlich nur noch sehr schwer durchzuführen. Und
+ist das Produkt erst mal im Einsatz, na ja, dann bewirken kleine Änderungen großen Aufwand. Wenn
+das Produkt im Einsatz ist, stellen Sie es mal vor, das ist jetzt mal eine Bank oder Versicherung im
+Einsatz und da arbeiten mal so 3000 Leute mit einem Produkt. Wenn Sie da Änderungen durchführen
+wollen, dann müssen Sie die allein mal distribuieren. Ja, an die entsprechenden Enduser bringen,
+die vielleicht sogar schulen auf ein anderes Verhalten des Produkts. Das heißt also Änderungen im
+Produkteinsatz. Da sollte man alles für tun, die zu vermeiden, obwohl letztendlich immer vermeiden
+wird es nicht möglich sein. Ja, was sind so mögliche Fehlerquellen? Wir wissen ja alle
+als Informatiker, keine Software ist fehlerfrei. Welche Fehlerquellen haben wir? Ja, eine fehlende
+Kommunikation, das passiert zum Beispiel in der Teamkoordination, kann laufend passieren.
+Sich ändern Anforderungen. Manchmal haben die Kunden die Auftraggeber halt, ja, noch zusätzliche
+Ideen. Da ist in der Anforderungsermittlung in der Phase vielleicht irgendwas nicht ganz ideal
+gelaufen. Zeitdruck kann so eine Fehlerquelle sein. Teammitglieder, weil die sich einfach, ja,
+in den eingesetzten Technologien noch nicht sehr auskennen. Da ist ein Berufsanfänger drin,
+der vielleicht in seiner Ausbildung Java gemacht hat und soll jetzt ein C++ Programm schreiben oder
+sowas, was er nicht so gerne gelernt hat oder nicht gerne gemacht hat. Vielleicht ist der Code
+einfach nur schlecht dokumentiert. Ja, oder bei den Entwicklungswerkzeugen der Arbeit ist etwas. Ja,
+dann kommen ganz zuletzt die Programmierfehler, an die man schnell zuerst denkt, aber ich denke,
+diese Liste hier zeigt, die Fehlerquellen sind viel, viel, ja, vielseitiger als jetzt nur irgendein
+Programmierfehler wie bei dieser Buchleife. Ja, dementsprechend gibt es verschiedene Ebenen
+der Durchführung der Qualitätssicherung. Wir haben auf der einen Seite die software spezifische Ebene.
+Hier werden praktische Anwendungssituationen gegenübergestellt mit schriftlichen
+Spezifikationen. Ja, und software spezifisch natürlich auch ist der Source Code. So, und das
+sind Dinge, damit befasst man sich dann im Themenumfeld des Software-Engineering.
+Organisationsspezifisch kann man natürlich auch Qualität sicherstellen. Da geht es dann aber mehr
+um die Fragen der Projektorganisation und vielleicht der Schulung der Mitarbeiter.
+Es gibt, wenn man sich so mit Qualitätssicherung im Software-Umfeld befasst, so sieben Grundsätze
+des Testens. Die möchte ich Ihnen jetzt auf den nächsten beiden Folien einmal kurz vorstellen.
+Ja, fangen wir mit dem ersten an. Testen zeigt die Anwesenheit von Fehlerzuständen.
+Dass also die Situation nur ein Fehler eingetreten ist und das bewirkt halt einen Test. Und was man
+versuchen möchte, ist die Reduktion der Wahrscheinlichkeit des Auftrittens weiterer
+Fehler. Wenn man keinen Fehlerzustand gefunden hat, naja, dann heißt das aber nicht, dass die
+Software fehlerfrei ist. Das ist unsere übliche Erfahrung von allen, die mal Software entwickelt
+haben. Ja, ebenso in eine ähnliche Richtung geht ein vollständiges Testen ist unmöglich. Denken
+Sie mal an so ein Produkt, was wir alle kennen, Sunworld oder vergleichbar von Konkurrenzprodukten.
+Wie viele hunderte von Funktionen gibt es darin? Die kann man nicht alle durchtesten. Manche
+Funktionen werden nur sehr selten benutzt. Natürlich wird man sich auf die repräsentativen
+Anwendungsfälle stürzen beim Test und sehr viel versuchen auszuprobieren, klappt das alles. Aber
+vollständig heißt, jede einzelne Situation der Anwendung auszuprobieren, ist eigentlich nicht
+möglich. Ja, dritter Grundsatz greift das auf, was ich gerade eben schon angesprochen habe,
+frühes Testen, Sparzeit und Geld. Also nicht erst, wenn das Produkt fertig ist, sondern unter
+Umständen zu sehr wohl überlegten Zeitpunkten innerhalb der Entwicklung bereits Tests einplanen.
+Denken Sie an gerade so konzeptionelle Fehler, damit man die auch noch beheben kann. Häufung
+von Fehlerzuständen. Fehlerzustände sind ungleichmäßig verteilt. Das heißt,
+man hat unter Umständen Module, die sehr fehlerzustandsreich sind und die muss man
+identifizieren und dort Tests intensivieren. Vorsicht vor dem Pestizidparadoxon. Alte Tests
+verlieren ihre Wirkung zur Erkennung von Fehlerzuständen. Weiterentwickelte Programmteile
+werden nämlich so nicht erfasst. Das heißt, man hat oder das meint, wenn man viele Tests auch
+schon durchgeführt hat, man kann Tests ja durchaus automatisiert auch durchführen.
+Da gibt es ja mittlerweile auch Tests, wo man sowas machen kann. Ja, wenn ich dann einfach die
+bestehenden Tests nochmal automatisiert ablaufen lasse, dann habe ich zwar getestet,
+aber ich habe meine Tests nicht auf neu entwickelte Programmteile angepasst. Die
+werden also durch alte Tests nicht erfasst. Das heißt also, ich muss auch meine Tests,
+die ich durchführe, immer wieder auf das Programm anpassen. Ja, Testen ist kontextabhängig. Wenn ich
+nur Hotelbuchungen durchführen möchte. Jetzt bin ich auf einer Dienstreise und es hat sich
+festgestellt, ich muss bei dem Kunden noch einen Tag länger bleiben. Ja, da gibt es dann
+unterschiedliche Situationen. Entweder sitze ich bei dem Kunden noch im Büro und darf dessen Rechner
+benutzen und kann dann am Desktop vielleicht mein Hotelzimmer für die eine Nacht buchen oder aber
+ich bin schon unterwegs, sitze an der Bushaltestelle oder auf dem Bahnsteig und muss über
+irgendwelche mobilen Devices mein Hotelzimmer reservieren. Ja, also das Prinzip ist der gleiche
+Anwendungsfall, aber ich habe einen unterschiedlichen Kontext. Ja, und weiterer Grundsatz des Testens,
+der letzte. Das ist ein Trugschluss. Keine Fehler gefunden bedeutet ein brauchbares System. Das ist
+überhaupt nicht der Fall. Software-Tests sind immer Stichproben. Ja, und denken Sie auch daran,
+Endnutzer, die können Erwartungen und Erfahrungen mit Alt- und Konkurrenzprodukten einbringen und
+haben davon eben auch ihre eigene Zugänge oder Zugangsweise zu einem bestehenden Produkt. Jetzt
+kann man Fehler kategorisieren. Ja, das möchte ich mal relativ kurz halten. Fehlerwirkung,
+Fehlerhandlung, Fehlerzustand. Zustand ist, wenn der Fehler einfach nur vorliegt. Fehlerwirkung ist
+das, was daraus wirklich gemacht wird. Schauen wir mal hier auf zwei Dinge, die mir besonders
+wichtig sind bei den Testen von Software-Produkten. Da ist nämlich einerseits der Begriff der
+Verifikation und andererseits der Validierung. So, und die Verifikation, dabei handelt es sich um
+die Sicherstellung, dass alle Teilergebnisse von Projektentwicklungsphasen konsistent sind. Das
+heißt, hier gleiche ich mein Softwareprodukt ab mit dem Pflichtenheft. Ich habe also eine Vorgabe
+und prüfe, ist das jetzt richtig umgesetzt, was im Pflichtenheft drin steht? Sind die
+funktionalen und nicht funktionalen Anforderungen von der Spezifikation richtig umgesetzt? Ja,
+wurde also das System technisch richtig entwickelt. Das kann ich sogar machen, ohne dass ich anwende
+einbeziehe. So, und denken wir mal an unsere Praktikumsaufgaben. Da haben wir ja diese
+Vermögensverwaltung oder auch die Projektbeantragungssoftware und die Frage, die man hier stellen kann ist eben,
+funktioniert die Vermögensverwaltung? Kann ich ein Projekt hier beantragen? Funktioniert das? Und das heißt,
+das ist also die Frage hier zu stellen, wurde das System richtig entwickelt? Das ist die
+Verifikation. Aber ganz wichtig ist aber auch, und zwar aus Nutzer, aus Kundensicht, die Validierung.
+Ich meine, als Kunde, da gehe ich mal davon aus, dass das, was ich da angeboten bekomme, wofür ich
+bezahlt habe, dass das richtig entwickelt wurde. Sprich, dass das Produkt funktioniert. Aber,
+das ist, ich sag mal, eine notwendige Voraussetzung oder eine Minimalforaussetzung. Viel wichtiger ist
+für mich als Nutzer, aber ist das denn valide? Das heißt, sind denn die Anforderungen, die ich
+als Kunde habe, erfüllt worden? So, bei der Validierung, da ist also die Einbeziehung des
+Kunden oder des Nutzers notwendig. Ja, da brauche ich also sowohl die Systemanalyse als auch die
+Spekation, Spezifikation und das Endprodukt. Und hier geht es um die Frage, wurde das richtige
+System entwickelt? Ja, es kann ja funktionieren, aber wenn ich in meiner Vermögensverwaltung dann
+die Immobilien nicht richtig erfassen kann, na dann kann ich das vielleicht nicht richtig benutzen.
+Oder wurde etwa nicht unterschieden zwischen Aktienwertpapieren und festverzinslichen
+Wertpapieren. Diese Dinge haben sehr unterschiedliche Datenstrukturen, wenn man sie erfassen möchte.
+Wenn ich eines davon nicht erfassen kann, na dann kann ich meine Vermögensverwaltung nicht richtig
+verwenden. Ja, genauso Beispiele ließen sich finden für die Projektbeantragung. Ja, oder fehlen bei
+der Vermögensverwaltung etwa die Grafiken. Dann kann ich keine Struktur meines Vermögens analysieren.
+Das sind dann die Fragen, die gehen dahin, kann der Nutzer mit dem, was da entwickelt worden ist,
+tatsächlich was anfangen? Und wenn das bejaht werden kann, dann ist das Produkt valide. Dann
+kann man mit dem Produkt richtig arbeiten. Immer, als wenn eine Bachelorarbeit wäre, ein Ergebnis,
+wenn Sie da ein Softwareprodukt erstellt haben, da sollten Sie immer validieren. Verifizieren
+natürlich auch, aber in dem gleichen Sinne, wie eben gesagt, dass ein Produkt funktioniert. Na,
+da gehen wir mal von aus, dass Sie da selbstständig genug dann gearbeitet und geprüft und getestet
+haben, dass das System richtig entwickelt worden ist. Aber dass der Benutzer damit auch was anfangen
+kann, das ist die wichtige Aussage und die zentrale Aussage. Und ja, wenn das eben nicht der Fall ist,
+dann landet im einfachsten Fall so ein Produkt nur im Schrank, wird also nicht weiter benutzt.
+Im schlimmsten Fall gibt es Rechtsstreitereien, ob da jemand dafür bezahlt. So, ordnen wir die
+Tests mal in den Softwareentwicklungsprozess ein. Wir haben ja mal diesen Softwareentwicklungsprozess
+gehabt in der folgenden Struktur. Vorstudie und Anforderungsanalyse, das Grobdesign mit der
+Komponentenbildung. Dann kommt die iterativ inkrementelle Entwicklung und Systemtest und
+Einführung. So, und diese beiden Schritte hier, iterativ inkrementelle Entwicklung und Systemtest,
+da ist das, wo man spätestens mit Tests beginnen sollte. So, wie testet man denn einfach? Ja,
+da sollte man auch wieder möglichst systematisch vorgehen. Das heißt, ein Test planen, dann muss
+der Test vorbereitet werden. Er muss dann wirklich durchgeführt werden und das Ergebnis muss
+dargestellt werden. Ich spreche hier jetzt nicht mehr von kleinen Tests, ob jetzt irgendeine Methode
+funktioniert, sondern wirklich von der Validierung, dass das Produkt also das tut, was es tun soll.
+So, und da gibt es jetzt innerhalb der Testplanung und Vorbereitung ein paar Dinge, mit denen sollte
+man sich auseinandersetzen. Da gibt es erstmal den Testrahmen. Da werden die Rahmenbedingungen
+für die Durchführung festgelegt. Die Kriterien für Start und Ende eines Testlaubs. In einem
+Meilenstein wird eine gewisse Funktionalität definiert. Ja, und da hängen dann Start und
+Ende in Mitteln. Welche Kriterien gibt es, sodass man sagen kann, ein Test ist gelungen oder hat
+auch nicht funktioniert? Dazu gehören Fragen, ja, was soll denn getestet werden? Wie detailliert,
+also welche Granularität soll denn bei den Tests an den Tag gelegt werden? Was sind so Ergebnisse,
+die wir hier erwarten? Ja, und wie sehen die Endprodukte eines Tests aus und die
+Kommunikationswege? Das heißt genauer, wie werden denn Fehler überhaupt dokumentiert? Das kann zum
+Beispiel in einem schriftlichen Bericht sein. Wie werden Fehler kategorisiert? Eine Kategorisierung
+kann man über Prioritätsstufen herbeiführen. Prioritätsstufen heißt, welcher Fehler muss als
+erstes beseitigt werden und welcher ist mehr kosmetischer Art. Muss also zunächst mal noch
+nicht eingegangen werden. Ja, und wer erhält denn welche Testergebnisse? Die Entwickler oder der
+Projektleiter oder vielleicht noch andere Personen? Ja, im Testrahmen muss man sich dann überlegen,
+welche Art von Tests werden denn durchgeführt, mit welchen Methoden wird getestet? Ja, und dann
+muss natürlich auch die Testplattform konfiguriert werden. Das heißt, dazu müssen Anforderungen an
+die Art und Software festgelegt werden, einschließlich der Systemumgebung. In der
+Regel setzt man dafür ja dann irgendein Testsystem auf, was noch nicht produktiv ist,
+um da nicht im schlechten Fall irgendwelchen Schaden anzurichten. Ja, und die Testdaten müssen
+spezifiziert werden. Irgendwoher brauche ich vielleicht auch mal ein paar Daten für meinen
+Tests. So, dann muss ich mich weiter damit befassen, welche Teststrategie möchte ich
+denn verfolgen. Ja, dazu gehört insbesondere, welche Testsziele möchte ich denn mir stecken.
+Zum Beispiel brauche ich einen korrekten Zugriff auf die Datenbasis. Wie sieht es mit einer
+Fehlerfindungsreiter aus? Mit einem schnellen Test, wie halte ich den Aufwand da gering oder will
+ich da mehr investieren? Da muss ich mir rechtzeitig darüber Gedanken machen, unter Umständen mit dem
+Kunden auch absprechen oder zumindest muss ich mit dem Budget das in Einklang bringen mit den
+Anzahl Personentagen, die ich für so einen Test einplane. Und wenn ich das weiß, kann ich
+entsprechend Antworten geben, wie intensiv teste ich denn, wie viel Aufwand stecke ich da rein.
+Ja, natürlich muss ich mir dann auch klar werden, wie führe ich die Tests durch, was die
+Wiederholbarkeit von Tests angeht, wenn der nicht wiederholbar ist. Ja, dann ist das so mit der
+Absicherung des Testergebnisses so eine Sache. Wenn ich einen Test zweimal mache, muss auch beide
+mal der gleiche Fehler herauskommen. So, ja, und welche Anforderungen an die Tester stelle ich denn?
+Wir haben, ist zwar ein etwas anderes Thema, kann man hier aber durchaus übertragen, bei der
+Dokumentation auch mal über verschiedene Adressaten gesprochen. Da haben wir unterschieden, sind das
+wenig Nutzer, sind das Experten. Solche Kriterien kann man hier auch anlegen bei den Testzielen.
+Wen brauche ich denn, um meine Testziele zu erreichen? Möchte ich da eben so ein wenig Nutzer oder so ein
+Experten hier in den Test einbeziehen? Ja, die dazu passende Teststrategie muss ich definieren,
+das heißt, ich muss Prioritäten von Testfällen setzen, da ich, wir haben ja vorhin schon gesagt,
+man kann nicht bei einem großen Produkt alle möglichen Anwendungsfälle durchtesten. Das heißt
+also auch hier muss ich Testfälle priorisieren. Da kann ich einerseits in meinen Use Cases hineinschauen,
+das sind ideale Quellen für Test Cases, aber insbesondere, wenn ich so eine Priorisierung vornehme,
+da sollte ich mich natürlich auch den Kunden orientieren. Was haben die für Wünsche, was ist
+für die Kunden am wichtigsten? Das sollte auf jeden Fall mal funktionieren und das sollte gut
+untersucht sein. Ja, die ebenso gehört dann dazu die Testreihenfolge der Qualitäten des Systems,
+da kann man ja noch ein bisschen weitergehen, hat so ein bisschen damit zu tun, was sind die Kunden
+Wünsche. Da können Vermarktungsaspekte dann aber auch noch eine Rolle spielen, was ist mir wichtig,
+was ich von meinem Produkt erzählen möchte und was es alles können soll und ja, das kann ich dann
+eben auch entsprechend höher priorisieren. Ja, zu den Qualitätsprioritäten, denn da gehören dann
+ja, Korrektheitssicherheit, die Performance, was jetzt die eine schnelle Entwicklung angeht,
+das heißt eine baldige Verfügbarkeit, all dazu muss ich mir im Vorfeld Gedanken machen und klar
+sagen, worauf lege ich hier welchen Wert. Wie sieht es mit dem Aufwand aus, mit dem Deckungsgrad,
+mit Anforderungen, ja und mit der Flexibilität auch, falls sich Anforderungen durchaus mal ändern.
+So, der Testgegenstand und die Testfälle. Ja, das muss man natürlich immer pro Produkt
+oder Teilprodukt angeben. Das heißt, die zu testenden Systeme oder Teilsysteme auf Klassenebene,
+naja, wenn ich sehr fein Granular testen möchte auch das. Ja, und dann muss ich angeben, was sind
+denn die zu testenden Eigenschaften. Ja, will ich jetzt einen Anwendungsfall testen oder bei
+detaillierter Granularität, welche Methode will ich testen, will ich in Algorithmus oder sowas
+gar testen. Ja, unter Umständen kann man hier auch durchaus abgrenzen und sagen, so, welche
+Eigenschaften unter Umständen nicht getestet werden sollen, das hängt dann eben von der
+Priorisierung ab, wenn die Ressourcen, die für einen Test zur Verfügung stehen, eben sehr
+eingeschränkt sind. Ja, die Auflistung der einzelnen Testfälle, das ist eigentlich so das, was hinterher
+dabei rauskommt und was sich auch immer ganz gut macht im Projekt und Abschlussarbeiten, wenn man
+kundtut, was hat man denn alles getestet, was, ja, wollte man testen und was war erwartet worden,
+was tatsächlich ausgekommen. So, und da macht man detaillierte Angaben zu Testrahmen und Teststrategie
+und zwar für jeden Testfall. Den Zeitplan darf man nicht vergessen, wenn man Tests plant und
+vorbereitet, eine detaillierte zeitliche Planung ist dazu notwendig, die Termine für die Tests,
+die Zeiten für Vor- und Nachbereitung. Ja, und so ein Testzeitplan, der gibt eben oder Projektzeitplan,
+der gibt den Rahmen vor, wann getestet werden soll. Der Testzeitplan, der ist allerdings wesentlich
+detaillierter als ein Projektzeitplan, der enthält eben spezifische Informationen über Testaktivitäten,
+die für den Projektablauf an sich noch irrelevant wären, die aber für den Testablauf wichtig sind.
+So, Zusammenfassung im Testplan, da kann man also sagen, die Ziele, da geht es darum, was soll
+erreicht werden, beim Umfang, was soll getestet werden, bei den Methoden, wie soll getestet werden,
+bei den Ressourcen, ja, wer testet, mit welchen Werkzeugen. Ja, und der Zeitplan ist einfach, wann
+wird getestet und die Verantwortlichkeit, wer ist für was zuständig. So, wenn man getestet hat,
+hatten wir ja vorhin schon gesagt, da ist es wichtig festzuhalten, was dabei rausgekommen ist
+und wie mit diesen Ergebnissen weiter umgegangen wird. Das heißt, wir müssen hergehen, erstmal
+ein Testprotokoll erstellen. Bestandteile dessen ist einerseits, ja, da sollte man sagen, um welchen
+Testfall handelt es sich bei diesem Protokoll. Wie sieht die Einzeltestfallspezifikation aus?
+Das kann sein, wenn man da so einen Test hat, da habe ich die Frau Meier als Testkandidatin,
+also als Person, als Mitarbeiterin, die das neue Produkt testet, die also nicht selbst getestet wird,
+sondern aktiv selbst testet. Ja, da sollte ich in so einem Protokoll etwas sagen, wer war das,
+wann war das, wo wurde das durchgeführt. Solche Tests kann man ja im Hause des Kunden machen,
+sowas kann man aber durchaus auch, ja, vielleicht im Hause der Entwicklungsformer machen. Hängt
+etwas von den Örtlichkeiten und den Beziehungen zwischen Kunden und Auftragenehmern ab. Ja,
+gibt es Abhängigkeiten zwischen den Testfällen? Welche Aufgaben hat die also bearbeitet? Das
+wäre hier noch die Testfälle-Identifikation oder die Einzelfallspezifikation. Welche Voraussetzungen
+sind an die Umgebung gestellt, in der da getestet wird? Ist das eine normale Büroumgebung? Ist das
+eine großhafte Umgebung? Oder, ja, je nachdem, wer das ist und was das für eine Applikation ist.
+Wir haben da auch so eine Applikation im Hause, die wird von Hausmeistern benutzt. Da habe ich
+mal eine ganz andere Umgebung. Da können Teile von der Software auch mal durchaus im Keller
+benutzt werden, wenn die da in irgendwelchen Geräten irgendwas ablesen müssen und da eine
+Software haben, die halt abgelesene Messwerte erfasst oder wo Fehlerberichte mal kurz geschrieben
+werden. Stichpunkte hier in der Heizung, der Öltank leckt oder irgend sowas. Das kann man unter
+Umständen dann sofort lokal aufnehmen und ja in das Produkt dann weiter einschließen lassen.
+Hier ist also gut zu protokollieren, wer hat was wann getestet. So, und diese Protokolle,
+die werden dann anschließend zusammengefasst in einen Testbericht, da werden die Fehlersituationen
+beurteilt, die Gesamtsituation kommentiert. Ja, das ist sozusagen das Ergebnis. Die Testmethoden,
+da haben wir so eine gewisse Palette Blackbox-Test, Whitebox-Test. Da möchte ich hier an dieser
+Stelle nicht mehr drauf eingehen, sondern hier noch auf unterschiedliche Varianten von Tests
+eingehen. Mal ganz kurz, und zwar zum einen kann man hergehen, Konfigurationen eines Systems
+überprüfen und da geht es einfach um die Lauffähigkeit des Systems auf einer Zielplattform.
+Auf einer Zielplattform, das heißt sie haben irgendwie entwickelt auf ihrem PC und entweder
+muss das jetzt in einer Arbeitsumgebung stattfinden auf einem größeren Rechner oder aber auch auf einem
+lokalen Device. Ja, der wichtige Unterschied ist, der meistens ist oder oftmals ist die
+Entwicklungsplattform ungleich der produktiven Plattform, wo das Produkt benutzt wird. Und da
+muss man eben sehen, auch wenn man eigentlich auf der Entwicklungsplattform alles so schön rund
+funktionierend hat, das muss auf der Zielplattform gar nicht so der Fall sein. Ja, was man dann auch
+testen sollte, ist die Installation, ist eine problemlose Installation auf dem Zielsystem möglich?
+Wie funktioniert das? Wie bringe ich meine entwickelte Produktfassung auf mein Zielsystem?
+Geht das über den Play Store oder das ist eine einfache Sache? Bei größeren Rechnersystemen gibt
+es auch entsprechende Verfahren, aber da muss ich eben schauen, habe ich hier alle Schritte berücksichtigt
+um mein Produkt hier in Betrieb nehmen zu können. Ja, der Funktionstest, das ist halt der Test erfüllt,
+das System die Anforderungen laut Anforderungsbeschreibung. Dann haben wir so einen Leistungstest, da
+geht es ja unter Realbedingungen soweit konstruierbar darum, wie werden die Ressourcen ausgelastet,
+wie sind die Antwortzeiten, wie ist das Lastverhalten, wenn ich da viele Leute vorsetze,
+viele Nutzer oder wenn Nutzer viele Transaktionen halt durchführen. So, hier muss man das erwartete
+Verhalten für jeden Einzelfall genau beschreiben und dann die Abweichungen entsprechend dokumentieren.
+Ja, Benutzbarkeitstests, hier kann man überprüfen, ist das unter ergonomischen Gesichtspunkten so
+etwas oder gut verwendbar. Das ist bereits in sehr frühen Entwicklungsphasen, wenn sie so horizontale
+Prototypen angefertigt haben, bereits möglich. Ja, das könnte ein eigenes Teilprojekt sogar sein,
+die Software Usability. Wenn man sowas zu einem späten Zeitpunkt macht, dann ist man meistens nur
+noch in der Lage somarisch zu beurteilen, eben wie vorhin gesagt, weil das Produkt schon sehr
+weit entwickelt ist und größere Änderungen, dann sehr viel Aufwand durchführen. Ja, Sicherheitstests
+gegebenenfalls durchführen, je nachdem welche Sicherheitsanforderungen davorliegen. Interoperabilitätstests,
+damit darunter versteht man so Schnittstellen zu anderen Systemen, gerade bei Kommunikationsprodukten.
+Ja, und wie sieht denn das aus? Und das vergisst man leicht, wenn so ein größeres Produkt, wo viele
+daran arbeiten, mal komplett abgeschaltet werden müssen. Also Neustart, wie einfach ist der möglich?
+Wenn wir jetzt alle für unseren Desktop-PC sitzen, ist das eine Trivialität. Aber wie ist das,
+wenn ich da jetzt mal 500 User habe, über Deutschland verteilt, ist das dann auch noch
+so einfach möglich? Sollte man bei einem systematisch durchgeführten Test auch mit
+berücksichtigen. Ja, und die Regulationstests, das sind also die Tests, wo immer wieder bereits
+durchgeführte Tests nochmal ausgeführt werden, aber ergänzt um Tests für neue Features, die
+sollte man immer wieder laufen lassen. So, damit habe ich die Thematik des Tests oder des Testens
+innerhalb des Software-Engineerings angesprochen. Man könnte zum Thema Software-Engineering oder
+zum Thema Test innerhalb des Software-Engineerings oder Qualitätssicherung eine eigene
+Lehrveranstaltung machen und deutlich tiefer drin einsteigen. Hier in dieser Veranstaltung
+ging es ja darum, den Software-Entwicklungsprozess von den Requirements bis zur Fertigstellung anzusprechen
+in allen Detailfassetten und da ist das Testen nur eine Facette. Wenn wir uns oder wenn Sie sich mit
+dem Testen weiter befassen möchten, dann kann man das in so Veranstaltungen, Vertiefungen des
+Software-Engineerings durchaus machen. Da geht man dann sehr ausführlich darauf ein.
