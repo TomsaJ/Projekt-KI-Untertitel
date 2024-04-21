@@ -22,3 +22,4 @@ def copy_to_tmp_directory(file_path):
         print("Zugriff verweigert. Überprüfen Sie die Berechtigungen.")
     except Exception as e:
         print(f"Ein Fehler ist aufgetreten: {e}")
+    return destination_path
