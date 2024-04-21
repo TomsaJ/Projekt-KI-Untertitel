@@ -18,7 +18,7 @@ if __name__ == "__main__":
         file_path = input("Geben Sie den Pfad zur Datei ein: ")
         # Überprüfe, ob der angegebene Pfad gültig ist
         if os.path.isfile(file_path):
-            copy_to_tmp_directory(file_path)
+            file_path = copy_to_tmp_directory(file_path)
             a = True
         else:
             print("Ungültiger Dateipfad.")
