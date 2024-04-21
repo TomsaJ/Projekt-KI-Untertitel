@@ -1,5 +1,13 @@
 import os
+import sys
 import shutil
+
+src_path = os.path.join(os.path.dirname(__file__), 'src')
+sys.path.append(src_path)
+
+# Importiere die Funktion Untertitel aus der Datei whisper.py
+from whisperfile import untertitel
+
 
 def copy_to_tmp_directory(file_path):
     # Erstelle einen temporären Ordner im aktuellen Verzeichnis
@@ -33,3 +41,4 @@ if __name__ == "__main__":
         copy_to_tmp_directory(file_path)
     else:
         print("Ungültiger Dateipfad.")
+    untertitel(file_path)
