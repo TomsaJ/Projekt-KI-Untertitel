@@ -23,3 +23,11 @@ def copy_to_tmp_directory(file_path):
     except Exception as e:
         print(f"Ein Fehler ist aufgetreten: {e}")
     return destination_path
+
+def get_file_name(file_path):
+    # Extrahiere den Dateinamen aus dem Dateipfad
+    file_name_with_extension = os.path.basename(file_path)
+    # Trenne den Dateinamen und die Erweiterung
+    file_name, file_extension = os.path.splitext(file_name_with_extension)
+    # Gib den Dateinamen zurück
+    return file_name

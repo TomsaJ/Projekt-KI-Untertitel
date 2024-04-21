@@ -8,7 +8,7 @@ sys.path.append(src_path)
 # Importiere die Funktion Untertitel aus der Datei whisper.py
 from whisperfile import untertitel
 from installwhisper import check_and_install_package
-from transferfile import copy_to_tmp_directory
+from file import copy_to_tmp_directory
 
 if __name__ == "__main__":
     a = False

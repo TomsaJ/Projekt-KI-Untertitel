@@ -1,12 +1,13 @@
 def untertitel(file_path):
 
-    ''''
     import whisper
 
     model = whisper.load_model("base")
-    result = model.transcribe("audio.mp3")
-    print(result["text"])
+    options = whisper.DecodingOptions(language='de', fp16 = False)
+    result = model.transcribe(file_path)
     
+    print(result["text"])
+    '''
     import whisper
     model = whisper.load_model("base")
     # load audio and pad/trim it to fit 30 seconds
@@ -25,7 +26,7 @@ def untertitel(file_path):
     result = whisper.decode(model, mel, options)
 
     # print the recognized text
-    print(result.text)'''
+    print(result.text)
     import subprocess
     model = "medium"
     language = "German"
@@ -40,3 +41,4 @@ def untertitel(file_path):
         # Handle den Fehler, wenn der Befehl fehlschlägt
         print(f"Fehler beim Ausführen des Befehls: {e}")
         return None
+    '''
