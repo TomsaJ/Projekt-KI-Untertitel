@@ -1,12 +1,19 @@
 def untertitel(file_path):
 
     import whisper
+    import datetime
 
     model = whisper.load_model("base")
     options = whisper.DecodingOptions(language='de', fp16 = False)
     result = model.transcribe(file_path)
-    
-    print(result["text"])
+
+    save_target = 'tmp/test.vtt'
+    with open (save_target,'w') as file:
+        for indx, segment in enumerate(result[ 'segments']):
+            file.write(str(indx + 1) + '\n')
+            file.write(str(datetime.timedelta(seconds=segment['start'])) + ' --> ' + str(datetime.timedelta(seconds=segment[ 'end'])) +'\n')
+            file.write(segment['text'].strip() + '\n')
+            print(result["text"])
     '''
     import whisper
     model = whisper.load_model("base")
