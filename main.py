@@ -9,9 +9,11 @@ sys.path.append(src_path)
 # Importiere die Funktion Untertitel aus der Datei whisper.py
 from whisperfile import untertitel
 from installwhisper import check_and_install_package
-from transferfile import copy_to_tmp_directory
+from transferfile import TempFileManager
+
 
 if __name__ == "__main__":
+    tmp = TempFileManager()
     a = False
     check_and_install_package()
     while a == False: 
@@ -19,14 +21,15 @@ if __name__ == "__main__":
         file_path = input("Geben Sie den Pfad zur Datei ein: ")
         # Überprüfe, ob der angegebene Pfad gültig ist
         if os.path.isfile(file_path):
-            file_path = copy_to_tmp_directory(file_path)
+            file_path = tmp.copy_to_tmp_directory(file_path)
             a = True
         else:
             print("Ungültiger Dateipfad.")
+    print(f"Der Untertitel wird nun erzeugt.")
     start_time = time.time()
     untertitel(file_path)
     end_time = time.time()
     execution_time = (end_time - start_time)/60
     print("Die Testfunktion wurde in {:.5f} Minuten ausgeführt.".format(execution_time))
-    delete_tmp_folder()
+    tmp.delete_tmp_folder()
     
