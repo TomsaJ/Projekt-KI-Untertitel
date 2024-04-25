@@ -1,6 +1,7 @@
 import os
 import sys
 import shutil
+import time
 
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
@@ -22,4 +23,9 @@ if __name__ == "__main__":
             a = True
         else:
             print("Ungültiger Dateipfad.")
+    start_time = time.time()
     untertitel(file_path)
+    end_time = time.time()
+    execution_time = (end_time - start_time)/60
+    print("Die Testfunktion wurde in {:.5f} Minuten ausgeführt.".format(execution_time))
+    
