@@ -6,7 +6,7 @@ import time
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
 
-# Importiere die Funktion Untertitel aus der Datei whisper.py
+
 from whisperfile import untertitel
 from installwhisper import check_and_install_package
 from transferfile import TempFileManager
@@ -31,5 +31,4 @@ if __name__ == "__main__":
     end_time = time.time()
     execution_time = (end_time - start_time)/60
     print("Die Testfunktion wurde in {:.5f} Minuten ausgeführt.".format(execution_time))
-    tmp.delete_tmp_folder()
-    
+    #tmp.delete_tmp_folder()
