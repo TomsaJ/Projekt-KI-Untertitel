@@ -23,3 +23,15 @@ def copy_to_tmp_directory(file_path):
     except Exception as e:
         print(f"Ein Fehler ist aufgetreten: {e}")
     return destination_path
+
+def delete_tmp_folder():
+    folder_path = "tmp"  # Pfad zum zu löschenden Ordner
+    try:
+        shutil.rmtree(folder_path)
+        print("Der Ordner 'tmp' wurde erfolgreich gelöscht.")
+    except FileNotFoundError:
+        print("Der Ordner 'tmp' wurde nicht gefunden.")
+    except PermissionError:
+        print("Keine Berechtigung zum Löschen des Ordners 'tmp'.")
+    except Exception as e:
+        print("Ein Fehler ist beim Löschen des Ordners 'tmp' aufgetreten:", e)
