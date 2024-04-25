@@ -13,7 +13,6 @@ from transferfile import TempFileManager
 
 
 if __name__ == "__main__":
-    tmp = TempFileManager()
     a = False
     check_and_install_package()
     while a == False: 

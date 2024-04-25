@@ -38,3 +38,12 @@ class TempFileManager:
             print("Keine Berechtigung zum Löschen des Ordners 'tmp'.")
         except Exception as e:
             print("Ein Fehler ist beim Löschen des Ordners 'tmp' aufgetreten:", e)
+
+    @staticmethod
+    def get_file_name(file_path):
+        # Extrahiere den Dateinamen aus dem Dateipfad
+        file_name_with_extension = os.path.basename(file_path)
+        # Trenne den Dateinamen und die Erweiterung
+        file_name, file_extension = os.path.splitext(file_name_with_extension)
+        # Gib den Dateinamen zurück
+        return file_name
