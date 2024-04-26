@@ -33,9 +33,10 @@ if __name__ == "__main__":
     execution_time = (end_time - start_time)/60
     print("Die Testfunktion wurde in {:.5f} Minuten ausgeführt.".format(execution_time))
     output_file = tmp.get_file_name(file_path)
-    output_file = '/tmp/' + output_file + '_subtitle.mp4'
-    subtitle = '/home/jutom001/KI/tmp/subtitel.vtt' 
+    output_file = os.path.join(os.getcwd(), 'tmp',  output_file + '_subtitle.mp4')
+    #subtitle = '/home/jutom001/KI/tmp/subtitel.vtt' 
+    subtitle = os.path.join(os.getcwd(), 'tmp', 'subtitel.vtt')
     tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
     # Beispielaufruf
     #output_file = '/path/to/output/combined_video.mp4'
-    tmp.delete_tmp_folder()
+    #tmp.delete_tmp_folder()

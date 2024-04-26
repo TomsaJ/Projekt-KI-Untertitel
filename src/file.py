@@ -66,21 +66,14 @@ class TempFileManager:
 
     @staticmethod
     def combine_video_with_subtitle(video_file, subtitle_file, output_file):
-        tmp = TempFileManager
-        converted_subtitle_file = subtitle_file.replace('.vtt', '.srt')  # Ersetze die Dateiendung durch .srt
-        converted_subtitle_file = tmp.convert_subtitle_me(subtitle_file, converted_subtitle_file)
-    
-        if converted_subtitle_file:
             try:
                 (
-                ffmpeg
-                .input(video_file)
-                .output(output_file, vcodec='copy', acodec='copy', scodec='mov_text', **{'metadata:s:s:0': 'language=ger'}, subtitles=converted_subtitle_file)
-                .run(overwrite_output=True)
+                    ffmpeg
+                    .input(video_file)
+                    .output(output_file, vf=f'subtitles={subtitle_file}')
+                    .run(overwrite_output=True)
                 )
                 print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
             except ffmpeg.Error as e:
                 print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
-        else:
-            print("Die Untertiteldatei konnte nicht konvertiert werden. Das Video wurde nicht kombiniert.")
 
