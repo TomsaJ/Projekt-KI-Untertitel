@@ -7,7 +7,7 @@ def untertitel(file_path):
     options = whisper.DecodingOptions(language='de', fp16 = False)
     result = model.transcribe(file_path)
 
-    save_target = 'tmp/test.vtt'
+    save_target = 'tmp/subtitel.vtt'
     with open (save_target,'w') as file:
         file.write(str('WEBVTT'))
         file.write(str('\n'))

@@ -1,8 +1,8 @@
 import subprocess
 import sys
 
-def check_and_install_package():
-    package_name ='openai-whisper'
+def check_and_install_package(package_name):
+    
     try:
         # Überprüfe, ob das Paket installiert ist
         subprocess.check_output([sys.executable, '-m', 'pip', 'show', package_name])
