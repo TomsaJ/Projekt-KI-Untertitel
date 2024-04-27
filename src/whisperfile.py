@@ -7,12 +7,15 @@ def untertitel(file_path):
     options = whisper.DecodingOptions(language='de', fp16 = False)
     result = model.transcribe(file_path)
 
-    save_target = 'tmp/subtitel.vtt'
-    with open (save_target,'w') as file:
-        file.write(str('WEBVTT'))
-        file.write(str('\n'))
-        for indx, segment in enumerate(result[ 'segments']):
-            file.write(str('\n'))
-            file.write(str(datetime.timedelta(seconds=segment['start'])) + ' --> ' + str(datetime.timedelta(seconds=segment[ 'end'])) +'\n')
-            file.write(segment['text'].strip() + '\n')
-        print(result["text"])
+    save_target = 'tmp/subtitle.srt'
+
+    with open(save_target, 'w') as file:
+        for indx, segment in enumerate(result['segments'], start=1):
+            start_time = datetime.timedelta(seconds=segment['start'])
+            end_time = datetime.timedelta(seconds=segment['end'])
+        
+            file.write(str(indx) + '\n')
+            file.write(str(start_time) + ' --> ' + str(end_time) + '\n')
+            file.write(segment['text'].strip() + '\n\n')
+        
+    print("SRT file created successfully.")

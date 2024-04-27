@@ -66,14 +66,17 @@ class TempFileManager:
 
     @staticmethod
     def combine_video_with_subtitle(video_file, subtitle_file, output_file):
-            try:
-                (
-                    ffmpeg
-                    .input(video_file)
-                    .output(output_file, vf=f'subtitles={subtitle_file}')
-                    .run(overwrite_output=True)
-                )
-                print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
-            except ffmpeg.Error as e:
-                print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
+        try:
+            (
+                ffmpeg
+                .input(video_file)
+                .output(output_file, vf=f'subtitles={subtitle_file}:force_style=\'Fontsize=24,PrimaryColour=&Hffffff&\'')
+                .run(overwrite_output=True)
+            )
+            print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
+        except ffmpeg.Error as e:
+            print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
+
+
+
 
