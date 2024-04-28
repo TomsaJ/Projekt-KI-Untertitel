@@ -35,8 +35,8 @@ def main():
     output_file = tmp.get_file_name(file_path)
     output_file = os.path.join(os.getcwd(), 'tmp',  output_file + '_subtitle.mp4')
     #subtitle = '/home/jutom001/KI/tmp/subtitel.vtt' 
-    subtitle = os.path.join(os.getcwd(), 'tmp', 'subtitel.vtt')
-    tmp.convert_subtitle_me(subtitle)
+    subtitle = os.path.join(os.getcwd(), 'tmp', 'subtitel.srt')
+    #tmp.convert_subtitle_me(subtitle)
     tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
     # Beispielaufruf
     #output_file = '/path/to/output/combined_video.mp4'
