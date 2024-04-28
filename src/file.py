@@ -58,19 +58,26 @@ class TempFileManager:
         convert_file.convert()
 
     @staticmethod
-    def combine_video_with_subtitle(video_file, subtitle_file, output_file):
+    def combine_video_with_subtitle(video_file, subtitle_file):
+        import subprocess
+        output_file = 'test.mp4'
         try:
-            (
-    ffmpeg
-    .input(video_file)
-    .filter("subtitles", subtitle_file)
-    .output(output_file)
-    .run()
-)
-            print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
+            command = [
+    "ffmpeg",
+    "-i", video_file,
+    "-i", subtitle_file,
+    "-c", "copy",  # behält den Video-Codec bei
+    "-c:s", "mov_text",  # Untertitel-Codec
+    "-map", "0:v:0",
+    "-map", "1:s:0",
+    "-y",  # Überschreibt die Ausgabedatei, wenn vorhanden
+    output_file
+]
+
+    # Ausführen des Befehls
+            subprocess.run(command)
+        
         except ffmpeg.Error as e:
             print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
-
-
 
 

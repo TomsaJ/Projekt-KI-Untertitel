@@ -16,9 +16,10 @@ def untertitel(file_path):
             end_time = datetime.timedelta(seconds=segment['end'])
 
             # Konvertiere Zeitstempel in einen String im gewünschten Format mit Komma für Dezimalstellen
-            start_time_str = str(start_time).replace('.', ',')
-            end_time_str = str(end_time).replace('.', ',')
-
+            start_time_str = '0' + str(start_time).replace('.', ',')
+            end_time_str = '0' + str(end_time).replace('.', ',')
+            if indx == 1:
+                start_time_str += ',000'
             file.write(str(indx) + '\n')
             file.write(start_time_str + ' --> ' + end_time_str + '\n')
             file.write(segment['text'].strip() + '\n\n')
