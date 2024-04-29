@@ -75,19 +75,30 @@ class TempFileManager:
             return
 
     # FFmpeg-Befehl zum Kombinieren von Video und Untertiteln
-        cmd = [
-        "ffmpeg",
-        "-i", video_file,
-        "-i", subtitle_file,
-        "-c:v", "copy",
-        "-c:a", "copy",
-        "-c:s", "mov_text",
-        "-map", "0:v:0",
-        "-map", "0:a:0",
-        "-map", "1:s:0",
-        "-metadata:s:s:0", "language=eng",
-        output_file
-    ]
+  #      cmd = [
+   #     "ffmpeg",
+    #    "-i", video_file,
+     #   "-i", subtitle_file,
+      #  "-c:v", "copy",
+       # "-c:a", "copy",
+  #      #"-c:s", "mov_text",
+   #     "-map", "0:v:0",
+    #    "-map", "0:a:0",
+     #   "-map", "1:s:0",
+      #  "-metadata:s:s:0", "language=eng",
+  #      output_file
+   # ]
 
     # FFmpeg-Befehl ausführen
-        subprocess.run(cmd)
+        #subprocess.run(cmd)
+        try:
+            (
+                ffmpeg
+                .input(video_file)
+                .output(output_file, vf=f'subtitles={subtitle_file}:force_style=\'Fontsize=24,PrimaryColour=&Hffffff&\'')
+                .run(overwrite_output=True)
+            )
+            print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
+        except ffmpeg.Error as e:
+            print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
+

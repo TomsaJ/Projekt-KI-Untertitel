@@ -45,6 +45,7 @@ if __name__ == "__main__":
     check_and_install_package('moviepy')
     check_and_install_package('pysubs2')
     check_and_install_package('Wand')
+    check_and_install_package('ffmpeg-python')
     from whisperfile import untertitel
     from file import TempFileManager
     main()
