@@ -73,32 +73,47 @@ class TempFileManager:
         if not os.path.exists(subtitle_file):
             print("Subtitle file not found.")
             return
+        print(f"Video: {video_file} Subtitle: {subtitle_file} Output: {output_file}")
 
+        #(ffmpeg
+        #.input(video_file)
+        #.output(output_file, vcodec='copy', acodec='copy', scodec='mov_text', **{'metadata:s:s:0': 'language=ger'})
+        #.output(subtitle_file, **{'metadata:s:s:0': 'language=ger'})
+        #.run())
+
+        #video = ffmpeg.input(video_file)
+        #audio = video.audio
+        #subtitles = ffmpeg.input(subtitle_file)
+        #(ffmpeg.output(video, audio, subtitles, output_file, vcodec='copy', acodec='copy').run())
+
+        #ffmpeg.input(video_file).output(output_file, vcodec='copy', acodec='copy').output(subtitle_file, c:s='mov_text').run()
     # FFmpeg-Befehl zum Kombinieren von Video und Untertiteln
-  #      cmd = [
-   #     "ffmpeg",
-    #    "-i", video_file,
-     #   "-i", subtitle_file,
-      #  "-c:v", "copy",
-       # "-c:a", "copy",
-  #      #"-c:s", "mov_text",
-   #     "-map", "0:v:0",
-    #    "-map", "0:a:0",
-     #   "-map", "1:s:0",
-      #  "-metadata:s:s:0", "language=eng",
-  #      output_file
-   # ]
+        cmd = [
+        "ffmpeg",
+    "-i", video_file,
+    "-i", subtitle_file,
+    "-c:v", "copy",
+    "-c:a", "copy",
+    "-c:s", "mov_text",
+    "-map", "0:v:0",
+    "-map", "0:a:0",
+    "-map", "1:s:0",
+    "-metadata:s:s:0", "language=ger",
+    output_file
+    ]    
 
     # FFmpeg-Befehl ausführen
-        #subprocess.run(cmd)
-        try:
-            (
-                ffmpeg
-                .input(video_file)
-                .output(output_file, vf=f'subtitles={subtitle_file}:force_style=\'Fontsize=24,PrimaryColour=&Hffffff&\'')
-                .run(overwrite_output=True)
-            )
-            print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
-        except ffmpeg.Error as e:
-            print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
+        subprocess.run(cmd)
+        #try:
+            #ffmpeg_cmd = f'ffmpeg -i {video_file} -i {subtitle_file} -c:s mov_text -c:v copy -c:a copy {output_file}'
+
+    # Führe den FFmpeg-Befehl aus
+            #subprocess.run(ffmpeg_cmd, check=True, shell=True)
+            #print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
+        #except ffmpeg.Error as e:
+            #print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
+
+        
+        #command = ['ffmpeg', '-i', video_file, '-i', subtitle_file, '-c', 'copy', '-c:s', 'mov_text', output_file]
+        #subprocess.run(command)
 
