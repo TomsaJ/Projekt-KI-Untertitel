@@ -2,12 +2,7 @@ import os
 import shutil
 import ffmpeg
 import subprocess
-from moviepy.editor import VideoFileClip, TextClip, CompositeVideoClip
-from pysubs2 import SSAFile
-import moviepy.config as cf
 
-# Setze den Pfad zur ImageMagick-Binärdatei
-cf.change_settings({"IMAGEMAGICK_BINARY": "/pfad/zur/convert"})
 
 
 class TempFileManager:
@@ -87,7 +82,7 @@ class TempFileManager:
         #(ffmpeg.output(video, audio, subtitles, output_file, vcodec='copy', acodec='copy').run())
 
         #ffmpeg.input(video_file).output(output_file, vcodec='copy', acodec='copy').output(subtitle_file, c:s='mov_text').run()
-    # FFmpeg-Befehl zum Kombinieren von Video und Untertiteln
+        # FFmpeg-Befehl zum Kombinieren von Video und Untertiteln
         cmd = [
         "ffmpeg",
     "-i", video_file,
@@ -101,9 +96,12 @@ class TempFileManager:
     "-metadata:s:s:0", "language=ger",
     output_file
     ]    
-
+            
     # FFmpeg-Befehl ausführen
-        subprocess.run(cmd)
+        with open(os.devnull, 'w') as devnull:
+            subprocess.run(cmd, stdout=devnull, stderr=subprocess.STDOUT)
+        print("Video hat jetzt einen untertitel")
+        #subprocess.run(cmd)
         #try:
             #ffmpeg_cmd = f'ffmpeg -i {video_file} -i {subtitle_file} -c:s mov_text -c:v copy -c:a copy {output_file}'
 

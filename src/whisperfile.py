@@ -4,7 +4,7 @@ def untertitel(file_path):
     import datetime
     import os
 
-    model = whisper.load_model("base")
+    model = whisper.load_model("medium")
     options = whisper.DecodingOptions(language='de', fp16 = False)
     result = model.transcribe(file_path)
 
@@ -35,4 +35,4 @@ def untertitel(file_path):
             file.write(str(indx) + '\n')
             file.write(start_time_str + ' --> ' + end_time_str + '\n')
             file.write(segment['text'].strip() + '\n\n')
-    print("VTT-Datei erfolgreich erstellt.")
+    print("SRT-Datei erfolgreich erstellt.")

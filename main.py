@@ -2,6 +2,7 @@ import os
 import sys
 import shutil
 import time
+import ssl
 
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
@@ -10,7 +11,6 @@ def main():
     tmp = TempFileManager()
     tmp.delete_tmp_folder() #für das debugging
     a = False
-    #check_and_install_package('python-srt')
     while a == False: 
         # Fordere den Benutzer auf, den Dateipfad einzugeben
         file_path = input("Geben Sie den Pfad zur Datei ein: ")
@@ -38,13 +38,11 @@ def main():
 
 
 if __name__ == "__main__":
+    ssl._create_default_https_context = ssl._create_unverified_context
     src_path = os.path.join(os.path.dirname(__file__), 'src')
     sys.path.append(src_path)
     from installwhisper import check_and_install_package
     check_and_install_package('openai-whisper')
-    check_and_install_package('moviepy')
-    check_and_install_package('pysubs2')
-    check_and_install_package('Wand')
     check_and_install_package('ffmpeg-python')
     from whisperfile import untertitel
     from file import TempFileManager
