@@ -51,19 +51,19 @@ async def main():
     task = asyncio.create_task(subtitel(file_path, filename))
 
 # Erstelle einen Task für die Methode timer() der Klasse Time
-    timer_task = asyncio.create_task(Tim.timer())
+    '''timer_task = asyncio.create_task(Tim.timer())'''
 
 # Warte auf das Ende der asynchronen Methode subtitel()
     execution_time = await task
     #print("Execution Time:", execution_time)
 
 # Beende den Timer
-    timer_task.cancel()
+    '''timer_task.cancel()
     try:
         await timer_task
     except asyncio.CancelledError:
-        pass
-    print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time))
+        pass'''
+    print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time/60))
     output_file = tmp.get_file_name(file_path)
     output_file = os.path.join(os.getcwd(), 'tmp',  output_file + '_subtitle.mp4')
     #subtitle = '/home/jutom001/KI/DieTulpe.srt'
@@ -83,7 +83,7 @@ async def main():
 
 # Schließen des Clips
     clip.close()
-    file_path = os.path.join(os.getcwd(), 'src', 'time.csv')
+    '''file_path = os.path.join(os.getcwd(), 'src', 'time.csv')
     if os.path.exists(file_path) and os.path.getsize(file_path) == 0:
         with open(file_path, 'w') as file:
             file.write('Ausführungszeit;Dauer des Videos\n')
@@ -92,7 +92,7 @@ async def main():
     with open(file_path, 'a') as file:
     # Schreiben der Ausführungszeit und der Videodauer in die Datei
         file.write(f'{execution_time};')
-        file.write(f'{video_duration/60}')
+        file.write(f'{video_duration/60}')'''
 
 if __name__ == "__main__":
     #ssl._create_default_https_context = ssl._create_unverified_context
