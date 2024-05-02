@@ -3,14 +3,27 @@ import sys
 import shutil
 import time
 import ssl
+import asyncio
 from moviepy.editor import VideoFileClip
 
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
 
-def main():
+async def subtitel(file_path):
+        sub = Subtitle_gen()
+        start_time = time.time()
+        # Hier wird untertitel(file_path) aufgerufen oder implementiert
+        await sub.untertitel(file_path)
+        #await asyncio.sleep(10)
+        end_time = time.time()
+        execution_time = end_time - start_time
+        return execution_time
+
+
+async def main():
     tmp = TempFileManager()
     tmp.delete_tmp_folder() #für das debugging
+    timer = Tim()
     a = False
     while a == False: 
         # Fordere den Benutzer auf, den Dateipfad einzugeben
@@ -22,6 +35,33 @@ def main():
         else:
             print("Ungültiger Dateipfad.")
     print(f"Der Untertitel wird nun erzeugt.")
+
+    # Starte die asynchrone Methode subtitel() in einem Task
+    task = asyncio.create_task(subtitel(file_path))
+
+# Erstelle einen Task für die Methode timer() der Klasse Tim
+    timer_task = asyncio.create_task(Tim.timer())
+
+# Warte auf das Ende der asynchronen Methode subtitel()
+    execution_time = await task
+    #print("Execution Time:", execution_time)
+
+# Beende den Timer
+    timer_task.cancel()
+    try:
+        await timer_task
+    except asyncio.CancelledError:
+        pass
+    print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time))
+    output_file = tmp.get_file_name(file_path)
+    output_file = os.path.join(os.getcwd(), 'tmp',  output_file + '_subtitle.mp4')
+    #subtitle = '/home/jutom001/KI/DieTulpe.srt'
+    subtitle = os.path.join(os.getcwd(), 'tmp', 'subtitel.srt')
+    #tmp.convert_subtitle_me(subtitle)
+    tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
+    # Beispielaufruf
+    #output_file = '/path/to/output/combined_video.mp4'
+    #tmp.delete_tmp_folder()
     video_file = file_path
 
     # VideoClip-Objekt erstellen
@@ -32,21 +72,16 @@ def main():
 
 # Schließen des Clips
     clip.close()
-    print(f"Dauert: {((video_duration *0.8) * 0.1642989597170965)/60} Minuten")
-    filename = tmp.get_file_name(file_path)
-    start_time = time.time()
-    untertitel(file_path, filename)
-    end_time = time.time()
-    execution_time = (end_time - start_time)/60
-    print("Der Untertitel wurde in {:.5f} Minuten erzeugt.".format(execution_time))
-    output_file = os.path.join(os.getcwd(), 'tmp',  filename + '_subtitle.mp4')
-    #subtitle = '/home/jutom001/KI/DieTulpe.srt'
-    subtitle = os.path.join(os.getcwd(), 'tmp', filename + '_subtitel.srt')
-    #tmp.convert_subtitle_me(subtitle)
-    tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
-    # Beispielaufruf
-    #output_file = '/path/to/output/combined_video.mp4'
-    #tmp.delete_tmp_folder()
+    file_path = os.path.join(os.getcwd(), 'src', 'time.csv')
+    if os.path.exists(file_path) and os.path.getsize(file_path) == 0:
+        with open(file_path, 'w') as file:
+            file.write('Ausführungszeit;Dauer des Videos\n')
+
+# Öffnen der Datei im Anhänge-Modus ('a')
+    with open(file_path, 'a') as file:
+    # Schreiben der Ausführungszeit und der Videodauer in die Datei
+        file.write(f'{execution_time};')
+        file.write(f'{video_duration/60}')
 
 if __name__ == "__main__":
     #ssl._create_default_https_context = ssl._create_unverified_context
@@ -57,6 +92,7 @@ if __name__ == "__main__":
     #check_and_install_package('ffmpeg-python')
     #check_and_install_package('moviepy')
 
-    from whisperfile import untertitel
+    from whisperfile import Subtitle_gen
     from file import TempFileManager
-    main()
+    from timer import Tim
+    asyncio.run(main())
