@@ -18,6 +18,7 @@ def main():
     for file_path in paths:
         file = os.path.join(os.getcwd(), '/home/jutom001/kitime/video', file_path)
         filename = tmp.get_file_name(file)
+        tmp.copy_to_tmp_directory(file_path)
         print(file_path)
         start_time = time.time()
         # Annahme: Die Funktion untertitel(file_path) erstellt Untertitel für das Video
