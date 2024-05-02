@@ -50,3 +50,7 @@ video_file = '/pfad/zum/video.mp4'
 subtitle_file = os.path.join(os.getcwd(), 'tmp', 'subtitel.vtt')
 output_file = '/pfad/zum/ausgabevideo.mp4'
 combine_video_with_subtitle(video_file, subtitle_file, output_file)
+
+# Installation
+Die Software durchläuft als erstes....
+Die Software ist nicht direkt über github installierbar. Wird die Software über github installiert wird die "warte Zeit" mit einem standard wert geschätzt. DIeser muss bzw. ist nicht korrekt.
