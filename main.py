@@ -9,11 +9,11 @@ from moviepy.editor import VideoFileClip
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
 
-async def subtitel(file_path):
+async def subtitel(file_path, filename):
         sub = Subtitle_gen()
         start_time = time.time()
         # Hier wird untertitel(file_path) aufgerufen oder implementiert
-        await sub.untertitel(file_path)
+        await sub.untertitel(file_path,filename)
         #await asyncio.sleep(10)
         end_time = time.time()
         execution_time = end_time - start_time
@@ -35,9 +35,9 @@ async def main():
         else:
             print("Ungültiger Dateipfad.")
     print(f"Der Untertitel wird nun erzeugt.")
-
+    filename = tmp.get_file_name(file_path)
     # Starte die asynchrone Methode subtitel() in einem Task
-    task = asyncio.create_task(subtitel(file_path))
+    task = asyncio.create_task(subtitel(file_path, filename))
 
 # Erstelle einen Task für die Methode timer() der Klasse Tim
     timer_task = asyncio.create_task(Tim.timer())
