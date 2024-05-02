@@ -35,11 +35,22 @@ async def main():
         else:
             print("Ungültiger Dateipfad.")
     print(f"Der Untertitel wird nun erzeugt.")
+    video_file = file_path
+
+    # VideoClip-Objekt erstellen
+    clip = VideoFileClip(video_file)
+
+    # Dauer des Videos in Sekunden
+    video_duration = clip.duration
+
+    # Schließen des Clips
+    clip.close()
+    print(f"Dauert: {((video_duration * 0.75) * 0.14608765404896104)/60} Minuten")
     filename = tmp.get_file_name(file_path)
     # Starte die asynchrone Methode subtitel() in einem Task
     task = asyncio.create_task(subtitel(file_path, filename))
 
-# Erstelle einen Task für die Methode timer() der Klasse Tim
+# Erstelle einen Task für die Methode timer() der Klasse Time
     timer_task = asyncio.create_task(Tim.timer())
 
 # Warte auf das Ende der asynchronen Methode subtitel()
