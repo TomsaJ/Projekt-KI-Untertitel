@@ -5,3 +5,4 @@ video/
 .ipynb_checkpoints/
 src/.ipynb_checkpoints/
 src/time.csv
+src/data.json
