@@ -4,3 +4,4 @@ tmp/
 video/
 .ipynb_checkpoints/
 src/.ipynb_checkpoints/
+src/time.csv
