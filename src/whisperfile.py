@@ -38,7 +38,7 @@ class Subtitle_gen:
                 file.write(start_time_str + ' --> ' + end_time_str + '\n')
                 file.write(segment['text'].strip() + '\n\n')
 
-        print("SRT-Datei erfolgreich erstellt.")
+        #print("SRT-Datei erfolgreich erstellt.")
         #print(result["text"])
 
         save_target = os.path.join(os.getcwd(), 'tmp', filename +'_videotext.txt')

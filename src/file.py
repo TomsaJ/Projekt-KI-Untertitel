@@ -21,11 +21,11 @@ class TempFileManager:
         try:
             # Kopiere die Datei in den temporären Ordner
             shutil.copy(file_path, destination_path)
-            print(f"Die Datei wurde erfolgreich nach {destination_path} kopiert.")
+            '''print(f"Die Datei wurde erfolgreich nach {destination_path} kopiert.")
         except FileNotFoundError:
             print("Die angegebene Datei existiert nicht.")
         except PermissionError:
-            print("Zugriff verweigert. Überprüfen Sie die Berechtigungen.")
+            print("Zugriff verweigert. Überprüfen Sie die Berechtigungen.")'''
         except Exception as e:
             print(f"Ein Fehler ist aufgetreten: {e}")
         return destination_path
@@ -35,11 +35,11 @@ class TempFileManager:
         folder_path = "tmp"  # Pfad zum zu löschenden Ordner
         try:
             shutil.rmtree(folder_path)
-            print("Der Ordner 'tmp' wurde erfolgreich gelöscht.")
+            '''print("Der Ordner 'tmp' wurde erfolgreich gelöscht.")
         except FileNotFoundError:
             print("Der Ordner 'tmp' wurde nicht gefunden.")
         except PermissionError:
-            print("Keine Berechtigung zum Löschen des Ordners 'tmp'.")
+            print("Keine Berechtigung zum Löschen des Ordners 'tmp'.")'''
         except Exception as e:
             print("Ein Fehler ist beim Löschen des Ordners 'tmp' aufgetreten:", e)
 
@@ -132,7 +132,8 @@ class TempFileManager:
         json_file_path = "src/data.json"
     # Check if the file already exists
         if os.path.exists(json_file_path):
-            print("The JSON file already exists.")
+            #print("The JSON file already exists.")
+            return
         else:
         # Data for the JSON file
             data = {"key1": neededtime}
@@ -140,7 +141,7 @@ class TempFileManager:
         # Write JSON data to the file
             with open(json_file_path, "w") as json_file:
                 json.dump(data, json_file)
-            print("The JSON file has been created.")
+            #print("The JSON file has been created.")
 
     def readjson(a):
         with open("src/data.json", "r") as json_file:

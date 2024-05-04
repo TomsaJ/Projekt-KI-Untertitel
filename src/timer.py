@@ -51,36 +51,39 @@ class Tim:
         return average
 
     def fillfile(paths):
-        print("Folgende videos laufen durch den Test")
-        for file_path in paths:
-            print(file_path)
-        print ("---------------\nStart")
+        #print("Folgende videos laufen durch den Test")
+        i = 0
+        #for file_path in paths:
+        #    print(file_path)
+        #print ("---------------\nStart")
         for file_path in paths:
             file = os.path.join(os.getcwd(), 'video', file_path)
             file = TempFileManager.copy_to_tmp_directory(file)
             filename = TempFileManager.get_file_name(file)
-            print(file, filename)
+            #print(file, filename)
             start_time = time.time()
         # Annahme: Die Funktion untertitel(file_path) erstellt Untertitel für das Video
             asyncio.run(Subtitle_gen.untertitel(file,filename))
             end_time = time.time()
             execution_time = end_time - start_time
-            print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time))
+            #print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time))
         
             video_file = file_path
             clip = VideoFileClip(file)
             video_duration = clip.duration
             clip.close()
-            print(f'Video länge: {video_duration}')
-            print(f'Pro Sekunde {execution_time/video_duration}')
-            csv_file_path = os.path.join(os.getcwd(), "/home/jutom001/KI/src", 'time.csv')
-            if os.path.exists(csv_file_path) and os.path.getsize(csv_file_path) == 0:
-                with open(csv_file_path, 'w') as file:
-                    file.write('Ausführungszeit;Dauer des Videos\n')
-            with open(csv_file_path, 'a') as file:
+            #print(f'Video länge: {video_duration}')
+            #print(f'Pro Sekunde {execution_time/video_duration}')
+            csv_file_path = os.path.join(os.getcwd(), "src", 'time.csv')
+            os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
+            with open(csv_file_path, 'w') as file:
                 file.write(f'{execution_time};{video_duration}\n')
             print(execution_time/video_duration)
-            print ("---------------------\n")
+            while i == 0:
+                print(f'Die Installation wird {((execution_time/video_duration)*(60*60))/60} Minuten dauern' )
+                i =1
+            #print ("---------------------\n")
+        print("Iinstallation beendet")
         #tmp.delete_tmp_folder()
 
 async def main():

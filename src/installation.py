@@ -1,6 +1,6 @@
 import sys
 import os
-src_path = "/home/jutom001/KI/src"
+src_path = "/src"
 sys.path.append(src_path)
 from file import TempFileManager as tmp
 from timer import Tim
@@ -8,8 +8,9 @@ from timer import Tim
 class Installation:
     @staticmethod
     def startup():
+        print("Die Installation wird gestartet bitte warten ...")
         # Assuming jsonfile() is defined outside of TempFileManager class
-        paths = ['10min.mp4','15min.mp4', '20min.mp4', '30min.mp4', '45min.mp4']
+        paths = ['1min.mp4','10min.mp4','15min.mp4', '20min.mp4', '30min.mp4']
         Tim.fillfile(paths)
         installtatio_neede_time = Tim.calculate_average()
         tmp.jsonfile(installtatio_neede_time)
