@@ -4,7 +4,6 @@ import shutil
 import time
 import ssl
 import asyncio
-from moviepy.editor import VideoFileClip
 
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
@@ -45,7 +44,7 @@ async def main():
 
     # Schließen des Clips
     clip.close()
-    print(f"Dauert: {((video_duration * 0.75) * 0.14608765404896104)/60} Minuten")
+    print(f"Dauert: {(video_duration * 0.041648740525032146)/60} Minuten")
     filename = tmp.get_file_name(file_path)
     # Starte die asynchrone Methode subtitel() in einem Task
     task = asyncio.create_task(subtitel(file_path, filename))
@@ -99,10 +98,10 @@ if __name__ == "__main__":
     src_path = os.path.join(os.path.dirname(__file__), 'src')
     sys.path.append(src_path)
     from installwhisper import check_and_install_package
-    #check_and_install_package('openai-whisper')
-    #check_and_install_package('ffmpeg-python')
-    #check_and_install_package('moviepy')
-
+    check_and_install_package('openai-whisper')
+    check_and_install_package('ffmpeg-python')
+    check_and_install_package('moviepy')
+    from moviepy.editor import VideoFileClip
     from whisperfile import Subtitle_gen
     from file import TempFileManager
     from timer import Tim

@@ -16,7 +16,8 @@ class Tim:
             await asyncio.sleep(1)  # Warte 1 Sekunde
     async def async_method():
     # Hier kommt der Code deiner asynchronen Methode
-        await asyncio.sleep(20)  # Beispiel: Warten für 5 Sekunden
+        filename = 'time.csv'
+        await Tim.calculate_average(filename)
 
     
     
@@ -37,34 +38,35 @@ class Tim:
                 
                 # Füge das Ergebnis zur Gesamtsumme hinzu
                 total += first_value / second_value
-                print(first_value / second_value)
+                #print(first_value / second_value)
                 count += 1
 
         # Berechne den Durchschnitt
         average = total / count if count > 0 else 0
+        print(average)
 
         return average
 
 async def main():
-    time = Tim
+    #time = Tim
     # Starte die asynchrone Methode in einem Task
-    task = asyncio.create_task(time.async_method())
+    task = asyncio.create_task(Tim.async_method())
 
     # Starte den Timer in einem separaten Task
-    timer_task = asyncio.create_task(time.timer())
+    #timer_task = asyncio.create_task(time.timer())
 
     # Warte auf das Ende der asynchronen Methode
     await task
 
     # Beende den Timer
-    timer_task.cancel()
-    try:
-        await timer_task
-    except asyncio.CancelledError:
-        pass
+    #timer_task.cancel()
+    #try:
+    #    await timer_task
+    #except asyncio.CancelledError:
+    #    pass
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(Tim.async_method())
 
 # Beispielaufruf des Skripts
 #filename = 'time.csv'  # Passe den Dateinamen entsprechend an
