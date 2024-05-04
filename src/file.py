@@ -2,7 +2,7 @@ import os
 import shutil
 import ffmpeg
 import subprocess
-
+import json
 
 
 class TempFileManager:
@@ -114,4 +114,18 @@ class TempFileManager:
         
         #command = ['ffmpeg', '-i', video_file, '-i', subtitle_file, '-c', 'copy', '-c:s', 'mov_text', output_file]
         #subprocess.run(command)
+
+    def jsonfile(self,neededtime):
+        json_file_path = "data.json"
+    # Check if the file already exists
+        if os.path.exists(json_file_path):
+            print("The JSON file already exists.")
+        else:
+        # Data for the JSON file
+            data = {"key1": neededtime}
+
+        # Write JSON data to the file
+            with open(json_file_path, "w") as json_file:
+                json.dump(data, json_file)
+            print("The JSON file has been created.")
 
