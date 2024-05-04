@@ -44,6 +44,19 @@ class TempFileManager:
             print("Ein Fehler ist beim Löschen des Ordners 'tmp' aufgetreten:", e)
 
     @staticmethod
+    def delete_tmp_file():
+        file_path = "src/time.csv"  # Path to the file to be deleted
+        try:
+            os.remove(file_path)
+            print("The file 'file.txt' has been successfully deleted.")
+        except FileNotFoundError:
+            print("The file 'file.txt' was not found.")
+        except PermissionError:
+            print("No permission to delete the file 'file.txt'.")
+        except Exception as e:
+            print("An error occurred while deleting the file 'file.txt':", e)
+
+    @staticmethod
     def get_file_name(file_path):
         # Extrahiere den Dateinamen aus dem Dateipfad
         file_name_with_extension = os.path.basename(file_path)
@@ -115,8 +128,8 @@ class TempFileManager:
         #command = ['ffmpeg', '-i', video_file, '-i', subtitle_file, '-c', 'copy', '-c:s', 'mov_text', output_file]
         #subprocess.run(command)
 
-    def jsonfile(self,neededtime):
-        json_file_path = "data.json"
+    def jsonfile(neededtime):
+        json_file_path = "src/data.json"
     # Check if the file already exists
         if os.path.exists(json_file_path):
             print("The JSON file already exists.")
@@ -129,3 +142,10 @@ class TempFileManager:
                 json.dump(data, json_file)
             print("The JSON file has been created.")
 
+    def readjson(a):
+        with open("src/data.json", "r") as json_file:
+            loaded_data = json.load(json_file)
+
+        # Eine bestimmte Zeile auswählen (zum Beispiel "key2")
+        selected_value = loaded_data.get("key1")
+        return selected_value
