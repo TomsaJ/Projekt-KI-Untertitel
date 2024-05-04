@@ -37,7 +37,7 @@ async def main():
         print(f'Video länge: {video_duration}')
         print(f'Pro Sekunde {execution_time/video_duration}')
         csv_file_path = os.path.join(os.getcwd(), "/home/jutom001/KI/src", 'time.csv')
-        if os.path.exists(csv_file_path) and os.path.getsize(csv_file_path) == 0:
+        if not os.path.exists(csv_file_path) and os.path.getsize(csv_file_path) == 0:
             with open(csv_file_path, 'w') as file:
                 file.write('Ausführungszeit;Dauer des Videos\n')
         with open(csv_file_path, 'a') as file:

@@ -13,6 +13,3 @@ def check_and_install_package(package_name):
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-U', package_name])
         print(f"{package_name} wurde erfolgreich installiert.")
 
-if __name__ == "__main__":
-    # Überprüfe und installiere das Paket openai-whisper
-    check_and_install_package('openai-whisper')

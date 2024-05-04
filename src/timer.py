@@ -5,6 +5,8 @@ import sys
 src_path = os.path.join(os.path.dirname(__file__), 'src')
 sys.path.append(src_path)
 from whisperfile import Subtitle_gen
+from file import TempFileManager
+from moviepy.editor import VideoFileClip
 class Tim:
 
     @staticmethod
@@ -21,7 +23,8 @@ class Tim:
 
     
     
-    async def calculate_average(filename):
+    def calculate_average():
+        filename = os.path.join(os.getcwd(), 'src', 'time.csv')
         total = 0
         count = 0
 
@@ -46,6 +49,39 @@ class Tim:
         print(average)
 
         return average
+
+    def fillfile(paths):
+        print("Folgende videos laufen durch den Test")
+        for file_path in paths:
+            print(file_path)
+        print ("---------------\nStart")
+        for file_path in paths:
+            file = os.path.join(os.getcwd(), 'video', file_path)
+            file = TempFileManager.copy_to_tmp_directory(file)
+            filename = TempFileManager.get_file_name(file)
+            print(file, filename)
+            start_time = time.time()
+        # Annahme: Die Funktion untertitel(file_path) erstellt Untertitel für das Video
+            asyncio.run(Subtitle_gen.untertitel(file,filename))
+            end_time = time.time()
+            execution_time = end_time - start_time
+            print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time))
+        
+            video_file = file_path
+            clip = VideoFileClip(file)
+            video_duration = clip.duration
+            clip.close()
+            print(f'Video länge: {video_duration}')
+            print(f'Pro Sekunde {execution_time/video_duration}')
+            csv_file_path = os.path.join(os.getcwd(), "/home/jutom001/KI/src", 'time.csv')
+            if os.path.exists(csv_file_path) and os.path.getsize(csv_file_path) == 0:
+                with open(csv_file_path, 'w') as file:
+                    file.write('Ausführungszeit;Dauer des Videos\n')
+            with open(csv_file_path, 'a') as file:
+                file.write(f'{execution_time};{video_duration}\n')
+            print(execution_time/video_duration)
+            print ("---------------------\n")
+        #tmp.delete_tmp_folder()
 
 async def main():
     #time = Tim
