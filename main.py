@@ -105,4 +105,9 @@ if __name__ == "__main__":
     from whisperfile import Subtitle_gen
     from file import TempFileManager
     from timer import Tim
+    from installation import Installation
+    json_file_path = "src/data.json"
+    # Überprüfen, ob die Datei bereits vorhanden ist
+    if not os.path.exists(json_file_path):
+        Installation.startup()
     asyncio.run(main())
