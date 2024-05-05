@@ -75,7 +75,6 @@ class Tim:
             #print(f'Video länge: {video_duration}')
             #print(f'Pro Sekunde {execution_time/video_duration}')
             csv_file_path = os.path.join(os.getcwd(), "src", 'time.csv')
-            os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
             with open(csv_file_path, 'w') as file:
                 file.write(f'{execution_time};{video_duration}\n')
             print(execution_time/video_duration)
