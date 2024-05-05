@@ -18,81 +18,49 @@ async def subtitel(file_path, filename):
         execution_time = end_time - start_time
         return execution_time
 
-
-async def main():
-    tmp = TempFileManager()
-    tmp.delete_tmp_folder() #für das debugging
-    timer = Tim()
+def input_path():
     a = False
     while a == False: 
         # Fordere den Benutzer auf, den Dateipfad einzugeben
         file_path = input("Geben Sie den Pfad zur Datei ein: ")
         # Überprüfe, ob der angegebene Pfad gültig ist
         if os.path.isfile(file_path):
-            file_path = tmp.copy_to_tmp_directory(file_path)
+            file_path = TempFileManager.copy_to_tmp_directory(file_path)
             a = True
         else:
             print("Ungültiger Dateipfad.")
     print(f"Der Untertitel wird nun erzeugt.")
-    video_file = file_path
+    return file_path
 
-    # VideoClip-Objekt erstellen
-    clip = VideoFileClip(video_file)
 
-    # Dauer des Videos in Sekunden
-    video_duration = clip.duration
-
-    # Schließen des Clips
-    clip.close()
+async def main():
+    tmp = TempFileManager()
+    tmp.delete_tmp_folder() #für das debugging
+    timer = Tim()
+    info = ProgramInfo(
+        author="Max Mustermann",
+        version="1.0",
+        description="Eine coole Anwendung, die alles kann!"
+    )
+    file_path = input_path()
+    video_duration = tmp.duration_video(file_path)
     d = tmp.readjson()
-    print(f"Dauert: {(video_duration * d)/60} Minuten")
+    ProgramInfo.duration(video_duration, d)
     filename = tmp.get_file_name(file_path)
-    # Starte die asynchrone Methode subtitel() in einem Task
     task = asyncio.create_task(subtitel(file_path, filename))
-
-# Erstelle einen Task für die Methode timer() der Klasse Time
     '''timer_task = asyncio.create_task(Tim.timer())'''
-
-# Warte auf das Ende der asynchronen Methode subtitel()
     execution_time = await task
     #print("Execution Time:", execution_time)
-
-# Beende den Timer
     '''timer_task.cancel()
     try:
         await timer_task
     except asyncio.CancelledError:
         pass'''
-    print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time/60))
+    ProgramInfo.neededtime(execution_time)
     output_file = tmp.get_file_name(file_path)
     output_file = os.path.join(os.getcwd(), 'tmp',  output_file + '_subtitle.mp4')
-    #subtitle = '/home/jutom001/KI/DieTulpe.srt'
     subtitle = os.path.join(os.getcwd(), 'tmp', filename +'_subtitel.srt')
-    #tmp.convert_subtitle_me(subtitle)
     tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
-    # Beispielaufruf
-    #output_file = '/path/to/output/combined_video.mp4'
-    #tmp.delete_tmp_folder()
-    video_file = file_path
-
-    # VideoClip-Objekt erstellen
-    clip = VideoFileClip(video_file)
-
-    # Dauer des Videos in Sekunden
-    video_duration = clip.duration
-
-# Schließen des Clips
-    clip.close()
-    '''file_path = os.path.join(os.getcwd(), 'src', 'time.csv')
-    if os.path.exists(file_path) and os.path.getsize(file_path) == 0:
-        with open(file_path, 'w') as file:
-            file.write('Ausführungszeit;Dauer des Videos\n')
-
-# Öffnen der Datei im Anhänge-Modus ('a')
-    with open(file_path, 'a') as file:
-    # Schreiben der Ausführungszeit und der Videodauer in die Datei
-        file.write(f'{execution_time};')
-        file.write(f'{video_duration/60}')'''
 
 if __name__ == "__main__":
     #ssl._create_default_https_context = ssl._create_unverified_context
@@ -107,6 +75,7 @@ if __name__ == "__main__":
     from file import TempFileManager
     from timer import Tim
     from installation import Installation
+    from design import ProgramInfo
     json_file_path = "src/data.json"
     # Überprüfen, ob die Datei bereits vorhanden ist
     if not os.path.exists(json_file_path):

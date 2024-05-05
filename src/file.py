@@ -3,7 +3,7 @@ import shutil
 import ffmpeg
 import subprocess
 import json
-
+from moviepy.editor import VideoFileClip
 
 class TempFileManager:
     @staticmethod
@@ -29,6 +29,17 @@ class TempFileManager:
         except Exception as e:
             print(f"Ein Fehler ist aufgetreten: {e}")
         return destination_path
+
+    def move_tmp_directory_back(destination_path,filename):
+    # Konstruiere den Ziel-Pfad für den neuen Ordner
+        new_folder_path = os.path.join(os.getcwd(), filename)
+
+        try:
+        # Umbenenne den temporären Ordner in "test"
+            os.rename(destination_path, new_folder_path)
+            print(f"Der temporäre Ordner wurde erfolgreich in {new_folder_path} umbenannt und zurückverschoben.")
+        except Exception as e:
+            print(f"Ein Fehler ist beim Umbenennen und Zurückverschieben des Ordners aufgetreten: {e}")
 
     @staticmethod
     def delete_tmp_folder():
@@ -150,3 +161,13 @@ class TempFileManager:
         # Eine bestimmte Zeile auswählen (zum Beispiel "key2")
         selected_value = loaded_data.get("key1")
         return selected_value
+
+    def duration_video(a, video_file):
+        clip = VideoFileClip(video_file)
+
+    # Dauer des Videos in Sekunden
+        video_duration = clip.duration
+
+    # Schließen des Clips
+        clip.close()
+        return video_duration
