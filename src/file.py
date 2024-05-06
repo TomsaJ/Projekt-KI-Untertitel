@@ -7,9 +7,9 @@ from moviepy.editor import VideoFileClip
 
 class TempFileManager:
     @staticmethod
-    def copy_to_tmp_directory(file_path):
+    def copy_to_tmp_directory(file_path, filename):
         # Erstelle einen temporären Ordner im aktuellen Verzeichnis
-        tmp_folder = os.path.join(os.getcwd(), 'tmp')
+        tmp_folder = os.path.join(os.getcwd(), filename)
         os.makedirs(tmp_folder, exist_ok=True)
 
         # Extrahiere den Dateinamen aus dem angegebenen Pfad
@@ -30,16 +30,19 @@ class TempFileManager:
             print(f"Ein Fehler ist aufgetreten: {e}")
         return destination_path
 
-    def move_tmp_directory_back(destination_path,filename):
-    # Konstruiere den Ziel-Pfad für den neuen Ordner
-        new_folder_path = os.path.join(os.getcwd(), filename)
-
+    def move_tmp_directory_back(ziel_pfad, ordnername):
         try:
-        # Umbenenne den temporären Ordner in "test"
-            os.rename(destination_path, new_folder_path)
-            print(f"Der temporäre Ordner wurde erfolgreich in {new_folder_path} umbenannt und zurückverschoben.")
+            ziel_pfad = os.path.dirname(ziel_pfad)
+        # Konstruiere den Ziel-Pfad für den temporären Ordner im ursprünglichen Verzeichnis
+            originaler_tmp_ordner_pfad = os.path.join(ziel_pfad, ordnername)
+        
+        # Verschiebe den temporären Ordner zurück ins ursprüngliche Verzeichnis
+            shutil.move(ordnername, originaler_tmp_ordner_pfad)
+            print(f"Der temporäre Ordner wurde erfolgreich zurückverschoben nach {originaler_tmp_ordner_pfad}.")
         except Exception as e:
-            print(f"Ein Fehler ist beim Umbenennen und Zurückverschieben des Ordners aufgetreten: {e}")
+            print(f"Ein Fehler ist aufgetreten beim Verschieben des temporären Ordners zurück: {e}")
+
+        return originaler_tmp_ordner_pfad
 
     @staticmethod
     def delete_tmp_folder():
@@ -55,11 +58,10 @@ class TempFileManager:
             print("Ein Fehler ist beim Löschen des Ordners 'tmp' aufgetreten:", e)
 
     @staticmethod
-    def delete_tmp_file():
-        file_path = "src/time.csv"  # Path to the file to be deleted
+    def delete_tmp_file(file_path):  # Path to the file to be deleted
         try:
             os.remove(file_path)
-            print("The file 'file.txt' has been successfully deleted.")
+            #print("The file 'file.txt' has been successfully deleted.")
         except FileNotFoundError:
             print("The file 'file.txt' was not found.")
         except PermissionError:
@@ -92,7 +94,6 @@ class TempFileManager:
         if not os.path.exists(subtitle_file):
             print("Subtitle file not found.")
             return
-        print(f"Video: {video_file} Subtitle: {subtitle_file} Output: {output_file}")
 
         #(ffmpeg
         #.input(video_file)
@@ -108,24 +109,24 @@ class TempFileManager:
         #ffmpeg.input(video_file).output(output_file, vcodec='copy', acodec='copy').output(subtitle_file, c:s='mov_text').run()
         # FFmpeg-Befehl zum Kombinieren von Video und Untertiteln
         cmd = [
-        "ffmpeg",
-    "-i", video_file,
-    "-i", subtitle_file,
-    "-c:v", "copy",
-    "-c:a", "copy",
-    "-c:s", "mov_text",
-    "-map", "0:v:0",
-    "-map", "0:a:0",
-    "-map", "1:s:0",
-    "-metadata:s:s:0", "language=ger",
+                "ffmpeg",
+                "-i", video_file,
+                "-i", subtitle_file,
+                "-c:v", "copy",
+                "-c:a", "copy",
+                "-c:s", "mov_text",
+                "-map", "0:v:0",
+                "-map", "0:a:0",
+                "-map", "1:s:0",
+                "-metadata:s:s:0", "language=ger",
     output_file
     ]    
             
     # FFmpeg-Befehl ausführen
-        with open(os.devnull, 'w') as devnull:
-            subprocess.run(cmd, stdout=devnull, stderr=subprocess.STDOUT)
+        #with open(os.devnull, 'w') as devnull:
+        #subprocess.run(cmd, stdout=devnull, stderr=subprocess.STDOUT)
         print("Video hat jetzt einen untertitel")
-        #subprocess.run(cmd)
+        subprocess.run(cmd)
         #try:
             #ffmpeg_cmd = f'ffmpeg -i {video_file} -i {subtitle_file} -c:s mov_text -c:v copy -c:a copy {output_file}'
 

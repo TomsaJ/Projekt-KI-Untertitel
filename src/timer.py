@@ -45,21 +45,25 @@ class Tim:
                 count += 1
 
         # Berechne den Durchschnitt
-        average = total / count if count > 0 else 0
+        average = total / count
         print(average)
 
         return average
 
     def fillfile(paths):
         #print("Folgende videos laufen durch den Test")
+        summe_time = 0
+        ini_time = time.time()
         i = 0
         #for file_path in paths:
         #    print(file_path)
         #print ("---------------\nStart")
         for file_path in paths:
             file = os.path.join(os.getcwd(), 'video', file_path)
-            file = TempFileManager.copy_to_tmp_directory(file)
-            filename = TempFileManager.get_file_name(file)
+            #filename = TempFileManager.get_file_name(file)
+            filename = 'tmp'
+            file = TempFileManager.copy_to_tmp_directory(file,filename)
+            
             #print(file, filename)
             start_time = time.time()
         # Annahme: Die Funktion untertitel(file_path) erstellt Untertitel für das Video
@@ -77,13 +81,16 @@ class Tim:
             csv_file_path = os.path.join(os.getcwd(), "src", 'time.csv')
             with open(csv_file_path, 'w') as file:
                 file.write(f'{execution_time};{video_duration}\n')
-            print(execution_time/video_duration)
+            #print(execution_time/video_duration)
             while i == 0:
                 print(f'Die Installation wird {((execution_time/video_duration)*(60*60))/60} Minuten dauern' )
+                time_init = ((execution_time/video_duration)*(60*60))/60
                 i =1
             #print ("---------------------\n")
-        print("Iinstallation beendet")
-        #tmp.delete_tmp_folder()
+            init_time_end = time.time()
+            init_time_end = init_time_end - ini_time
+            summe_time = summe_time + (init_time_end/60)
+            print (f'Es sind schon {((summe_time)/time_init) * 100} % ')
 
 async def main():
     #time = Tim

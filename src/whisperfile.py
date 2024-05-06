@@ -10,7 +10,7 @@ class Subtitle_gen:
         options = whisper.DecodingOptions(language='de', fp16=False)
         result = model.transcribe(file_path)
 
-        save_target = os.path.join(os.getcwd(), 'tmp', filename + '_subtitel.srt')
+        save_target = os.path.join(os.getcwd(), filename, filename + '_subtitel.srt')
 
         # Öffnen der SRT-Datei zum Schreiben
         with open(save_target, 'w') as file:
@@ -41,7 +41,7 @@ class Subtitle_gen:
         #print("SRT-Datei erfolgreich erstellt.")
         #print(result["text"])
 
-        save_target = os.path.join(os.getcwd(), 'tmp', filename +'_videotext.txt')
+        save_target = os.path.join(os.getcwd(), filename, filename +'_videotext.txt')
         with open(save_target, 'w') as file:
             for indx, segment in enumerate(result['segments'], start=1):
                 text = segment['text'].strip()

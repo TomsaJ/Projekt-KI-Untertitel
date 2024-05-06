@@ -22,31 +22,31 @@ def input_path():
     a = False
     while a == False: 
         # Fordere den Benutzer auf, den Dateipfad einzugeben
-        file_path = input("Geben Sie den Pfad zur Datei ein: ")
+        old_path = input("Geben Sie den Pfad zur Datei ein: ")
         # Überprüfe, ob der angegebene Pfad gültig ist
-        if os.path.isfile(file_path):
-            file_path = TempFileManager.copy_to_tmp_directory(file_path)
+        if os.path.isfile(old_path):
+            filename = TempFileManager.get_file_name(old_path)
+            file_path = TempFileManager.copy_to_tmp_directory(old_path,filename)
             a = True
         else:
             print("Ungültiger Dateipfad.")
     print(f"Der Untertitel wird nun erzeugt.")
-    return file_path
+    return file_path,old_path, filename
 
 
 async def main():
     tmp = TempFileManager()
-    tmp.delete_tmp_folder() #für das debugging
+    #tmp.delete_tmp_folder() #für das debugging
     timer = Tim()
     info = ProgramInfo(
         author="Max Mustermann",
         version="1.0",
         description="Eine coole Anwendung, die alles kann!"
     )
-    file_path = input_path()
+    file_path, old_path, filename = input_path()
     video_duration = tmp.duration_video(file_path)
     d = tmp.readjson()
     ProgramInfo.duration(video_duration, d)
-    filename = tmp.get_file_name(file_path)
     task = asyncio.create_task(subtitel(file_path, filename))
     '''timer_task = asyncio.create_task(Tim.timer())'''
     execution_time = await task
@@ -58,9 +58,13 @@ async def main():
         pass'''
     ProgramInfo.neededtime(execution_time)
     output_file = tmp.get_file_name(file_path)
-    output_file = os.path.join(os.getcwd(), 'tmp',  output_file + '_subtitle.mp4')
-    subtitle = os.path.join(os.getcwd(), 'tmp', filename +'_subtitel.srt')
+    output_file = os.path.join(os.getcwd(), filename,  output_file + '_subtitle.mp4')
+    subtitle = os.path.join(os.getcwd(), filename, filename +'_subtitel.srt')
     tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
+    print(filename +'/' +filename + '.mp4')
+    tmp.delete_tmp_file(file_path)
+    print (file_path)
+    TempFileManager.move_tmp_directory_back(old_path,filename)
 
 if __name__ == "__main__":
     #ssl._create_default_https_context = ssl._create_unverified_context
