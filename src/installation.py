@@ -18,7 +18,7 @@ class Installation:
         Tim.fillfile(paths)
         installtatio_neede_time = Tim.calculate_average()
         tmp.jsonfile(installtatio_neede_time)
-        print("Iinstallation beendet")
+        print("Installation beendet")
         ProgramInfo.lines()
         tmp.delete_tmp_folder()
         tmp.delete_tmp_file("src/time.csv")
