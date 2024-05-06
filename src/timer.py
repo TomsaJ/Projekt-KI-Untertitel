@@ -29,9 +29,6 @@ class Tim:
         count = 0
 
         with open(filename, 'r') as file:
-            # Ignoriere die erste Zeile
-            next(file)
-            
             for line in file:
                 # Trenne die Zeile anhand des Semikolons
                 values = line.strip().split(';')
@@ -45,8 +42,8 @@ class Tim:
                 count += 1
 
         # Berechne den Durchschnitt
-        average = total / count
-        print(average)
+        average = total / count 
+        #print(average)
 
         return average
 
@@ -68,6 +65,9 @@ class Tim:
             start_time = time.time()
         # Annahme: Die Funktion untertitel(file_path) erstellt Untertitel für das Video
             asyncio.run(Subtitle_gen.untertitel(file,filename))
+            output_file = os.path.join(os.getcwd(), filename,  file_path + '_subtitle.mp4')
+            subtitle = os.path.join(os.getcwd(), filename, filename +'_subtitel.srt')
+            TempFileManager.combine_video_with_subtitle(file, subtitle, output_file)
             end_time = time.time()
             execution_time = end_time - start_time
             #print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time))
@@ -79,9 +79,12 @@ class Tim:
             #print(f'Video länge: {video_duration}')
             #print(f'Pro Sekunde {execution_time/video_duration}')
             csv_file_path = os.path.join(os.getcwd(), "src", 'time.csv')
-            with open(csv_file_path, 'w') as file:
-                file.write(f'{execution_time};{video_duration}\n')
-            #print(execution_time/video_duration)
+            if i == 0:
+                with open(csv_file_path, 'w') as file:
+                    file.write(f'{execution_time};{video_duration}\n')
+            else:
+                with open(csv_file_path, 'a') as file:
+                    file.write(f'{execution_time};{video_duration}\n')
             while i == 0:
                 print(f'Die Installation wird {((execution_time/video_duration)*(60*60))/60} Minuten dauern' )
                 time_init = ((execution_time/video_duration)*(60*60))/60

@@ -61,10 +61,11 @@ async def main():
     output_file = os.path.join(os.getcwd(), filename,  output_file + '_subtitle.mp4')
     subtitle = os.path.join(os.getcwd(), filename, filename +'_subtitel.srt')
     tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
-    print(filename +'/' +filename + '.mp4')
+    #print(filename +'/' +filename + '.mp4')
     tmp.delete_tmp_file(file_path)
-    print (file_path)
+    #print (file_path)
     TempFileManager.move_tmp_directory_back(old_path,filename)
+    ProgramInfo.lines()
 
 if __name__ == "__main__":
     #ssl._create_default_https_context = ssl._create_unverified_context

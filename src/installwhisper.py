@@ -1,6 +1,6 @@
 import subprocess
 import sys
-
+from design import ProgramInfo
 def check_and_install_package(package_name):
     
     try:

@@ -22,6 +22,9 @@ class ProgramInfo:
     def neededtime(execution_time):
         print("Der Untertitel wurde in {:.5f} Sekunden erzeugt.".format(execution_time/60))
 
+    def lines():
+        print("=" * 50)
+
 if __name__ == "__main__":
     info = ProgramInfo(
         author="Max Mustermann",

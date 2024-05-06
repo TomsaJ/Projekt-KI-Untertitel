@@ -123,10 +123,10 @@ class TempFileManager:
     ]    
             
     # FFmpeg-Befehl ausführen
-        #with open(os.devnull, 'w') as devnull:
-        #subprocess.run(cmd, stdout=devnull, stderr=subprocess.STDOUT)
-        print("Video hat jetzt einen untertitel")
-        subprocess.run(cmd)
+        with open(os.devnull, 'w') as devnull:
+            subprocess.run(cmd, stdout=devnull, stderr=subprocess.STDOUT)
+        #print("Video hat jetzt einen untertitel")
+        #subprocess.run(cmd)
         #try:
             #ffmpeg_cmd = f'ffmpeg -i {video_file} -i {subtitle_file} -c:s mov_text -c:v copy -c:a copy {output_file}'
 
