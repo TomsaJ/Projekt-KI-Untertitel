@@ -55,19 +55,17 @@ class TempFileManager:
         except PermissionError:
             print("Keine Berechtigung zum Löschen des Ordners 'tmp'.")'''
         except Exception as e:
-            print("Ein Fehler ist beim Löschen des Ordners 'tmp' aufgetreten:", e)
+            # print("Ein Fehler ist beim Löschen des Ordners 'tmp' aufgetreten:", e)
+            return
 
     @staticmethod
     def delete_tmp_file(file_path):  # Path to the file to be deleted
         try:
             os.remove(file_path)
             #print("The file 'file.txt' has been successfully deleted.")
-        except FileNotFoundError:
-            print("The file 'file.txt' was not found.")
-        except PermissionError:
-            print("No permission to delete the file 'file.txt'.")
         except Exception as e:
-            print("An error occurred while deleting the file 'file.txt':", e)
+            #print("An error occurred while deleting the file 'file.txt':", e)
+            return
 
     @staticmethod
     def get_file_name(file_path):

@@ -86,14 +86,16 @@ class Tim:
                 with open(csv_file_path, 'a') as file:
                     file.write(f'{execution_time};{video_duration}\n')
             while i == 0:
-                print(f'Die Installation wird {((execution_time/video_duration)*(60*60))/60} Minuten dauern' )
+                print(f'Die Installation wird {(((execution_time/video_duration)*(60*60))/60)%60: .2f} Minuten dauern' )
                 time_init = ((execution_time/video_duration)*(60*60))/60
                 i =1
             #print ("---------------------\n")
             init_time_end = time.time()
             init_time_end = init_time_end - ini_time
             summe_time = summe_time + (init_time_end/60)
-            print (f'Es sind schon {((summe_time)/time_init) * 100} % ')
+            if ((summe_time)/time_init) * 100 <= 100:
+                print (f'Es sind schon {((summe_time)/time_init) * 100: .2f} % ')
+        print('Es sind schon 100 % ')
 
 async def main():
     #time = Tim

@@ -10,6 +10,8 @@ class Installation:
     @staticmethod
     def startup():
         ProgramInfo.lines()
+        tmp.delete_tmp_folder()
+        tmp.delete_tmp_file("src/time.csv")
         print("Die Installation wird gestartet bitte warten ...")
         # Assuming jsonfile() is defined outside of TempFileManager class
         paths = ['1min.mp4','10min.mp4','15min.mp4', '20min.mp4', '30min.mp4']
