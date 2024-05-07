@@ -5,7 +5,7 @@ class ProgramInfo:
         self.author = "Laureen Roccotelli und Julian Maximilian Tomsa"
         self.github = "LauriTrite und TomsaJ"
         self.repo = "https://github.com/TomsaJ/Projekt-KI-Untertitel.git"
-        self.version = "1.2.2"
+        self.version = "1.2.3"
         self.description = "Erstellt mit whisper einen Untertitel für das\nausgewählte Video und verbindet beides miteinander"
         ProgramInfo.print_info(self)
 
