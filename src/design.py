@@ -3,7 +3,7 @@
 class ProgramInfo:
     def __init__(self):
         self.author = "Laureen Roccotelli und Julian Maximilian Tomsa"
-        self.version = "1.2"
+        self.version = "1.2.1"
         self.description = "Erstellt mit whisper einen Untertitel für das\nausgewählte Video und verbindet beides miteinander"
         ProgramInfo.print_info(self)
 

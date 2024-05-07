@@ -17,18 +17,18 @@ async def subtitel(file_path, filename):
 
 def input_path():
     a = False
-    while a == False: 
+    while not a: 
         # Fordere den Benutzer auf, den Dateipfad einzugeben
-        old_path = input("Geben Sie den Pfad zur Datei ein: ")
+        old_path = input("Geben Sie den Pfad zur Datei ein: ").strip()
         # Überprüfe, ob der angegebene Pfad gültig ist
         if os.path.isfile(old_path):
             filename = TempFileManager.get_file_name(old_path)
-            file_path = TempFileManager.copy_to_tmp_directory(old_path,filename)
+            file_path = TempFileManager.copy_to_tmp_directory(old_path, filename)
             a = True
         else:
             print("Ungültiger Dateipfad.")
-    print(f"Der Untertitel wird nun erzeugt.")
-    return file_path,old_path, filename
+    print("Der Untertitel wird nun erzeugt.")
+    return file_path, old_path, filename
 
 
 async def main():
