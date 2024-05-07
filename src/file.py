@@ -38,11 +38,11 @@ class TempFileManager:
         
         # Verschiebe den temporären Ordner zurück ins ursprüngliche Verzeichnis
             shutil.move(ordnername, originaler_tmp_ordner_pfad)
-            print(f"Der temporäre Ordner wurde erfolgreich zurückverschoben nach {originaler_tmp_ordner_pfad}.")
+            #print(f"Der temporäre Ordner wurde erfolgreich zurückverschoben nach {originaler_tmp_ordner_pfad}.")
         except Exception as e:
             print(f"Ein Fehler ist aufgetreten beim Verschieben des temporären Ordners zurück: {e}")
 
-        return originaler_tmp_ordner_pfad
+        return ziel_pfad
 
     @staticmethod
     def delete_tmp_folder():

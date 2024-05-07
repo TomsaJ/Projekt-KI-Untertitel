@@ -64,7 +64,9 @@ async def main():
     #print(filename +'/' +filename + '.mp4')
     tmp.delete_tmp_file(file_path)
     #print (file_path)
-    TempFileManager.move_tmp_directory_back(old_path,filename)
+    t = TempFileManager.move_tmp_directory_back(old_path,filename)
+    ProgramInfo.lines()
+    print(f"Das Video hat jetzt einen untertitel und liegt im Verzeichnis {old_path}")
     ProgramInfo.lines()
 
 if __name__ == "__main__":
