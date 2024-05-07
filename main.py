@@ -10,13 +10,10 @@ sys.path.append(src_path)
 
 async def subtitel(file_path, filename):
         sub = Subtitle_gen()
-        start_time = time.time()
         # Hier wird untertitel(file_path) aufgerufen oder implementiert
         await sub.untertitel(file_path,filename)
         #await asyncio.sleep(10)
-        end_time = time.time()
-        execution_time = end_time - start_time
-        return execution_time
+        
 
 def input_path():
     a = False
@@ -39,14 +36,13 @@ async def main():
     #tmp.delete_tmp_folder() #für das debugging
     timer = Tim()
     info = ProgramInfo(
-        author="Max Mustermann",
-        version="1.0",
-        description="Eine coole Anwendung, die alles kann!"
     )
     file_path, old_path, filename = input_path()
     video_duration = tmp.duration_video(file_path)
     d = tmp.readjson()
     ProgramInfo.duration(video_duration, d)
+    #tmp.delete_tmp_file(file_path)
+    start_time = time.time()
     task = asyncio.create_task(subtitel(file_path, filename))
     '''timer_task = asyncio.create_task(Tim.timer())'''
     execution_time = await task
@@ -56,17 +52,19 @@ async def main():
         await timer_task
     except asyncio.CancelledError:
         pass'''
-    ProgramInfo.neededtime(execution_time)
     output_file = tmp.get_file_name(file_path)
     output_file = os.path.join(os.getcwd(), filename,  output_file + '_subtitle.mp4')
     subtitle = os.path.join(os.getcwd(), filename, filename +'_subtitel.srt')
     tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    ProgramInfo.neededtime(execution_time)
     #print(filename +'/' +filename + '.mp4')
     tmp.delete_tmp_file(file_path)
     #print (file_path)
     t = TempFileManager.move_tmp_directory_back(old_path,filename)
     ProgramInfo.lines()
-    print(f"Das Video hat jetzt einen untertitel und liegt im Verzeichnis {old_path}")
+    print(f"Das Video hat jetzt einen untertitel und liegt im Verzeichnis\n{old_path}")
     ProgramInfo.lines()
 
 if __name__ == "__main__":
