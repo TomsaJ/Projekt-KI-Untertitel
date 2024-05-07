@@ -5,7 +5,7 @@ class ProgramInfo:
         self.author = "Laureen Roccotelli und Julian Maximilian Tomsa"
         self.github = "LauriTrite und TomsaJ"
         self.repo = "https://github.com/TomsaJ/Projekt-KI-Untertitel.git"
-        self.version = "1.2.3"
+        self.version = "1.2.4"
         self.description = "Erstellt mit whisper einen Untertitel für das\nausgewählte Video und verbindet beides miteinander"
         ProgramInfo.print_info(self)
 
@@ -24,7 +24,7 @@ class ProgramInfo:
         print(f"Dauert: {(video_duration * d)/60:.2f} Minuten")
 
     def neededtime(execution_time):
-        print("Der Untertitel wurde in {:.2f} Sekunden erzeugt.".format((execution_time/60)%60))
+        print("Der Untertitel wurde in {:.2f} Minuten erzeugt.".format((execution_time/60)%60))
 
     def lines():
         print("=" * 65)
