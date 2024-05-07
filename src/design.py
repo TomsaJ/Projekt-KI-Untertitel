@@ -3,8 +3,8 @@
 class ProgramInfo:
     def __init__(self):
         self.author = "Laureen Roccotelli und Julian Maximilian Tomsa"
-        self.github = "Github: LauriTrite und TomsaJ"
-        sef.repo = "Repo: https://github.com/TomsaJ/Projekt-KI-Untertitel.git"
+        self.github = "LauriTrite und TomsaJ"
+        self.repo = "https://github.com/TomsaJ/Projekt-KI-Untertitel.git"
         self.version = "1.2.2"
         self.description = "Erstellt mit whisper einen Untertitel für das\nausgewählte Video und verbindet beides miteinander"
         ProgramInfo.print_info(self)
@@ -15,6 +15,8 @@ class ProgramInfo:
         ProgramInfo.lines()
         print(f"Autor: {self.author}")
         print(f"Version: {self.version}")
+        print(f"Github: {self.github}")
+        print(f"Repo: {self.repo}")
         print(f"Beschreibung: {self.description}")
         ProgramInfo.lines()
     
