@@ -1,24 +1,24 @@
 # main.py
 
-class ProgramInfo:
+class ProgramDesign:
     def __init__(self):
-        self.author = "Laureen Roccotelli und Julian Maximilian Tomsa"
         self.github = "LauriTrite und TomsaJ"
         self.repo = "https://github.com/TomsaJ/Projekt-KI-Untertitel.git"
-        self.version = "1.2.4"
+        self.version = "1.2.6"
         self.description = "Erstellt mit whisper einen Untertitel für das\nausgewählte Video und verbindet beides miteinander"
-        ProgramInfo.print_info(self)
+        ProgramDesign.print_info(self)
 
     def print_info(self):
-        ProgramInfo.lines()
+        ProgramDesign.lines()
         print("                     Videos mit Untertitel")
-        ProgramInfo.lines()
-        print(f"Autor: {self.author}")
+        ProgramDesign.lines()
+        print(f"Autor: {self.github}")
         print(f"Version: {self.version}")
         print(f"Github: {self.github}")
         print(f"Repo: {self.repo}")
         print(f"Beschreibung: {self.description}")
-        ProgramInfo.lines()
+        ProgramDesign.lines()
+        ProgramDesign.lines()
     
     def duration(video_duration, d):
         print(f"Dauert: {(video_duration * d)/60:.2f} Minuten")
@@ -30,7 +30,7 @@ class ProgramInfo:
         print("=" * 65)
 
 if __name__ == "__main__":
-    info = ProgramInfo(
+    info = ProgramDesign(
         author="Max Mustermann",
         version="1.0",
         description="Eine coole Anwendung, die alles kann!"

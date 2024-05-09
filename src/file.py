@@ -5,19 +5,16 @@ import subprocess
 import json
 from moviepy.editor import VideoFileClip
 
-class TempFileManager:
+class FileManager:
     @staticmethod
     def copy_to_tmp_directory(file_path, filename):
         # Erstelle einen temporären Ordner im aktuellen Verzeichnis
         tmp_folder = os.path.join(os.getcwd(), filename)
         os.makedirs(tmp_folder, exist_ok=True)
-
         # Extrahiere den Dateinamen aus dem angegebenen Pfad
         file_name = os.path.basename(file_path)
-
         # Konstruiere den Ziel-Pfad im temporären Ordner
         destination_path = os.path.join(tmp_folder, file_name)
-
         try:
             # Kopiere die Datei in den temporären Ordner
             shutil.copy(file_path, destination_path)
@@ -29,7 +26,8 @@ class TempFileManager:
         except Exception as e:
             print(f"Ein Fehler ist aufgetreten: {e}")
         return destination_path
-
+    
+    @staticmethod
     def move_tmp_directory_back(ziel_pfad, ordnername):
         try:
             ziel_pfad = os.path.dirname(ziel_pfad)
@@ -41,7 +39,6 @@ class TempFileManager:
             #print(f"Der temporäre Ordner wurde erfolgreich zurückverschoben nach {originaler_tmp_ordner_pfad}.")
         except Exception as e:
             print(f"Ein Fehler ist aufgetreten beim Verschieben des temporären Ordners zurück: {e}")
-
         return ziel_pfad
 
     @staticmethod
@@ -92,21 +89,15 @@ class TempFileManager:
         if not os.path.exists(subtitle_file):
             print("Subtitle file not found.")
             return
-
+        # ffmpeg-python
+        #Funktionert leider nicht wie gewünscht. Gerne selber einwenig experimentieren
         #(ffmpeg
         #.input(video_file)
         #.output(output_file, vcodec='copy', acodec='copy', scodec='mov_text', **{'metadata:s:s:0': 'language=ger'})
         #.output(subtitle_file, **{'metadata:s:s:0': 'language=ger'})
         #.run())
-
-        #video = ffmpeg.input(video_file)
-        #audio = video.audio
-        #subtitles = ffmpeg.input(subtitle_file)
-        #(ffmpeg.output(video, audio, subtitles, output_file, vcodec='copy', acodec='copy').run())
-
-        #ffmpeg.input(video_file).output(output_file, vcodec='copy', acodec='copy').output(subtitle_file, c:s='mov_text').run()
         # FFmpeg-Befehl zum Kombinieren von Video und Untertiteln
-        cmd = [
+        cmd =   [
                 "ffmpeg",
                 "-i", video_file,
                 "-i", subtitle_file,
@@ -116,57 +107,32 @@ class TempFileManager:
                 "-map", "0:v:0",
                 "-map", "0:a:0",
                 "-map", "1:s:0",
-                "-metadata:s:s:0", "language=ger",
-    output_file
-    ]    
-            
+                "-metadata:s:s:0", "language=ger", output_file
+                ]
     # FFmpeg-Befehl ausführen
         with open(os.devnull, 'w') as devnull:
             subprocess.run(cmd, stdout=devnull, stderr=subprocess.STDOUT)
-        #print("Video hat jetzt einen untertitel")
-        #subprocess.run(cmd)
-        #try:
-            #ffmpeg_cmd = f'ffmpeg -i {video_file} -i {subtitle_file} -c:s mov_text -c:v copy -c:a copy {output_file}'
 
-    # Führe den FFmpeg-Befehl aus
-            #subprocess.run(ffmpeg_cmd, check=True, shell=True)
-            #print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
-        #except ffmpeg.Error as e:
-            #print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
-
-        
-        #command = ['ffmpeg', '-i', video_file, '-i', subtitle_file, '-c', 'copy', '-c:s', 'mov_text', output_file]
-        #subprocess.run(command)
-
+    @staticmethod
     def jsonfile(neededtime):
         json_file_path = "src/data.json"
-    # Check if the file already exists
         if os.path.exists(json_file_path):
-            #print("The JSON file already exists.")
             return
         else:
-        # Data for the JSON file
-            data = {"key1": neededtime}
-
-        # Write JSON data to the file
+            data = {"duration": neededtime}
             with open(json_file_path, "w") as json_file:
                 json.dump(data, json_file)
-            #print("The JSON file has been created.")
 
+    @staticmethod
     def readjson(a):
         with open("src/data.json", "r") as json_file:
             loaded_data = json.load(json_file)
-
-        # Eine bestimmte Zeile auswählen (zum Beispiel "key2")
-        selected_value = loaded_data.get("key1")
+        selected_value = loaded_data.get("duration")
         return selected_value
 
+    @staticmethod
     def duration_video(a, video_file):
         clip = VideoFileClip(video_file)
-
-    # Dauer des Videos in Sekunden
         video_duration = clip.duration
-
-    # Schließen des Clips
         clip.close()
         return video_duration

@@ -6,11 +6,13 @@ import ssl
 import asyncio
 from moviepy.editor import VideoFileClip
 
-src_path = "/home/jutom001/KI/src"
+
+# Ist eine Datei, die zuerst entwickelt worden ist um eine Mittelwert zuberechnen, die später in der Klasse TIm umgesetzt worden ist
+src_path = "src"
 sys.path.append(src_path)
 
 async def main():
-    tmp = TempFileManager()
+    tmp = FileManager()
     gen = Subtitle_gen()
     paths = ['10min.mp4','15min.mp4', '20min.mp4', '30min.mp4', '45min.mp4', '90min.mp4']
     print("Folgende videos laufen durch den Test")
@@ -50,6 +52,6 @@ if __name__ == "__main__":
     src_path = "/home/jutom001/KI/src"
     sys.path.append(src_path)
     from installwhisper import check_and_install_package
-    from whisperfile import Subtitle_gen
-    from file import TempFileManager
+    from subtitle_gen import Subtitle_gen
+    from file import FileManager
     asyncio.run(main())
