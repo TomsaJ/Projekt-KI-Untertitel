@@ -1,5 +1,3 @@
-# main.py
-
 class ProgramDesign:
     def __init__(self):
         self.github = "LauriTrite und TomsaJ"

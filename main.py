@@ -32,11 +32,10 @@ def input_path():
 
 
 async def main():
-    tmp = FileManager()
     #tmp.delete_tmp_folder() #für das debugging
     file_path, old_path, filename = input_path()
-    video_duration = tmp.duration_video(file_path)
-    d = tmp.readjson()
+    video_duration = FileManager.duration_video(file_path)
+    d = FileManager.readjson()
     ProgramDesign.duration(video_duration, d)
     #tmp.delete_tmp_file(file_path)
     start_time = time.time()
@@ -49,16 +48,14 @@ async def main():
         await timer_task
     except asyncio.CancelledError:
         pass'''
-    output_file = tmp.get_file_name(file_path)
+    output_file = FileManager.get_file_name(file_path)
     output_file = os.path.join(os.getcwd(), filename,  output_file + '_subtitle.mp4')
     subtitle = os.path.join(os.getcwd(), filename, filename +'_subtitel.srt')
-    tmp.combine_video_with_subtitle(file_path, subtitle, output_file)
+    FileManager.combine_video_with_subtitle(file_path, subtitle, output_file)
     end_time = time.time()
     execution_time = end_time - start_time
     ProgramDesign.neededtime(execution_time)
-    #print(filename +'/' +filename + '.mp4')
-    tmp.delete_tmp_file(file_path)
-    #print (file_path)
+    FileManager.delete_tmp_file(file_path)
     t = FileManager.move_tmp_directory_back(old_path,filename)
     ProgramDesign.lines()
     print(f"Das Video hat jetzt einen untertitel und liegt im Verzeichnis\n{old_path.strip('.mp4')}")

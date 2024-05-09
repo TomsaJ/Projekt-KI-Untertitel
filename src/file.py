@@ -124,14 +124,14 @@ class FileManager:
                 json.dump(data, json_file)
 
     @staticmethod
-    def readjson(a):
+    def readjson():
         with open("src/data.json", "r") as json_file:
             loaded_data = json.load(json_file)
         selected_value = loaded_data.get("duration")
         return selected_value
 
     @staticmethod
-    def duration_video(a, video_file):
+    def duration_video(video_file):
         clip = VideoFileClip(video_file)
         video_duration = clip.duration
         clip.close()
