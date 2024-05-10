@@ -10,6 +10,9 @@ whisper-openai wird beim Programmstart automatisch installiert sowie movipy und 
 ## Autor
 Entwickelt wurde dieses Projekt von [LauriTrite](https://www.github.com/LauriTrite) und [TomsaJ](https://www.github.com/TomsaJ)
 
+## Version
+Aktuelle Version v1.3
+
 ## Ausführung
 Nach dem Start des Programms wird nach dem Video gefragt in FOrm eines Pfads. Es ist möglich den Pfad einzutippen, einfach ist es aber das Video in das Terminalfenster zu ziehen. Es wird ein Ordner erstellt mit dem Video, das nun einen Untertitel hat, der SRT-Datei und einer Text-Datei.
 Dieser Ordner befindet sich im gleichen Pfad, wie das Video. DIes wird aber auch nochmal im Terminal angezeigt.
