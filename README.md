@@ -1,61 +1,22 @@
 # Projekt-KI-Untertitel
 
-## Beschreibeung
-Diese Anwendung erstellt einen Untertitel mit dem KI-Model [@Whisper] (https://github.com/openai/whisper), das von OpenAI entwickelt worden ist. Es wird zum einen eine Unteritel-Datei erstellt (SRT-Datei),
-die Anschließend mit einem Video (mp4) zumsammen kombiniert wirde. Außerdem wird eine Text-Datei erstellt, in der der gesamte sprochende Text gespeichert wird.
+## Beschreibung
+Diese Anwendung erstellt einen Untertitel mit dem KI-Model [Whisper](https://github.com/openai/whisper), das von OpenAI entwickelt worden ist. Es wird zum einen eine Untertitel-Datei erstellt (SRT-Datei),
+die anschließend mit einem Video (mp4) zusammen kombiniert wird. Außerdem wird eine Text-Datei erstellt, in der der gesamte gesprochenen Text gespeichert wird.
+
+## Voraussetzung
+whisper-openai wird beim Programmstart automatisch installiert sowie movipy und ffmepg-python. Wichtig ist auch das ffmpeg installiert ist.
+
 ## Autor
-Entwickelt wurde dieses Projekt von [@LauriTrite](https://www.github.com/LauriTrite) und [@TomsaJ](https://www.github.com/TomsaJ)
+Entwickelt wurde dieses Projekt von [LauriTrite](https://www.github.com/LauriTrite) und [TomsaJ](https://www.github.com/TomsaJ)
 
 ## Ausführung
-starte die main.py im Terminal mit python main.py
-der momentane daten pfad ist video/DieTulpe.mp4
-
-https://www.youtube.com/watch?v=UWOPQlxk-LM
-
-
-    def combine_video_with_subtitle(video_file, subtitle_file, output_file):
-        tmp = TempFileManager
-        converted_subtitle_file = subtitle_file.replace('.vtt', '.srt')  # Ersetze die Dateiendung durch .srt
-        converted_subtitle_file = tmp.convert_subtitle(subtitle_file, converted_subtitle_file)
-    
-        if converted_subtitle_file:
-            try:
-                (
-                    ffmpeg
-                    .input(video_file)
-                    .input(converted_subtitle_file, vf='subtitles=' + converted_subtitle_file)  # Füge die konvertierte Untertiteldatei hinzu
-                    .output(output_file, vcodec='copy', acodec='copy')
-                    .run(overwrite_output=True)
-                )
-                print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
-            except ffmpeg.Error as e:
-                print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
-        else:
-            print("Die Untertiteldatei konnte nicht konvertiert werden. Das Video wurde nicht kombiniert.")
-
-
-            import os
-import ffmpeg
-
-def combine_video_with_subtitle(video_file, subtitle_file, output_file):
-    try:
-        (
-            ffmpeg
-            .input(video_file)
-            .output(output_file, vf=f'subtitles={subtitle_file}')
-            .run(overwrite_output=True)
-        )
-        print("Die Video-Datei wurde erfolgreich mit den Untertiteln kombiniert und gespeichert.")
-    except ffmpeg.Error as e:
-        print(f"Fehler beim Kombinieren von Video und Untertiteln: {e.stderr}")
-
-# Beispielaufruf
-video_file = '/pfad/zum/video.mp4'
-# Konstruiere den vollen Pfad zur Untertiteldatei
-subtitle_file = os.path.join(os.getcwd(), 'tmp', 'subtitel.vtt')
-output_file = '/pfad/zum/ausgabevideo.mp4'
-combine_video_with_subtitle(video_file, subtitle_file, output_file)
+Nach dem Start des Programms wird nach dem Video gefragt in FOrm eines Pfads. Es ist möglich den Pfad einzutippen, einfach ist es aber das Video in das Terminalfenster zu ziehen. Es wird ein Ordner erstellt mit dem Video, das nun einen Untertitel hat, der SRT-Datei und einer Text-Datei.
+Dieser Ordner befindet sich im gleichen Pfad, wie das Video. DIes wird aber auch nochmal im Terminal angezeigt.
 
 # Installation
-Die Software durchläuft als erstes....
-Die Software ist nicht direkt über github installierbar. Wird die Software über github installiert wird die "warte Zeit" mit einem standard wert geschätzt. DIeser muss bzw. ist nicht korrekt.
+In diesem Repo liegt eine Standard-Config bei. Diese Config beinhaltet einen Durchschnittswert, der die dauer 1er-Sekunde eines videos braucht um einen unter titel zu generieren und hinzuzufügen.
+In diesem Fall wurde der Standardwert mit einer NVIDIA GPU ermittel, diese liegt bei 0.14346300072019624 pro Sekunde.
+Um Umkehrschluss bedeutet das, dass die richtige Dauer abweichen kann. 
+Um eine genauere geschätzte Zeit zuhaben kann die Software mit dem folgenden Link heruntergeladen werden (Link). Bei der Installation werden 4 Videos durchlaufen, um einen genaueren Schätzwert für 
+deine CPU/GPU zu ermitteln.
