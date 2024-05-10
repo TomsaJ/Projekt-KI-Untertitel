@@ -1,5 +1,10 @@
 # Projekt-KI-Untertitel
 
+## Beschreibeung
+Diese Anwendung erstellt einen Untertitel mit dem KI-Model [@Whisper] (https://github.com/openai/whisper), das von OpenAI entwickelt worden ist. Es wird zum einen eine Unteritel-Datei erstellt (SRT-Datei),
+die Anschließend mit einem Video (mp4) zumsammen kombiniert wirde. Außerdem wird eine Text-Datei erstellt, in der der gesamte sprochende Text gespeichert wird.
+## Autor
+Entwickelt wurde dieses Projekt von [@LauriTrite](https://www.github.com/LauriTrite) und [@TomsaJ](https://www.github.com/TomsaJ)
 
 ## Ausführung
 starte die main.py im Terminal mit python main.py
