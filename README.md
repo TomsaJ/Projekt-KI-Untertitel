@@ -5,7 +5,7 @@ Diese Anwendung erstellt einen Untertitel mit dem KI-Model [Whisper](https://git
 die anschließend mit einem Video (mp4) zusammen kombiniert wird. Außerdem wird eine Text-Datei erstellt, in der der gesamte gesprochenen Text gespeichert wird.
 
 ## Voraussetzung
-whisper-openai wird beim Programmstart automatisch installiert sowie movipy und ffmepg-python. Wichtig ist auch das ffmpeg installiert ist.
+whisper-openai wird beim Programmstart automatisch installiert sowie movipy und ffmepg-python. Wichtig ist auch, dass ffmpeg installiert ist.
 
 ## Autor
 Entwickelt wurde dieses Projekt von [LauriTrite](https://www.github.com/LauriTrite) und [TomsaJ](https://www.github.com/TomsaJ)
