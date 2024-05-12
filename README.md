@@ -5,9 +5,9 @@ Diese Anwendung erstellt einen Untertitel mit dem KI-Model [Whisper](https://git
 die anschließend mit einem Video (mp4) zusammen kombiniert wird. Außerdem wird eine Text-Datei (txt) erstellt, in der der gesamte gesprochenen Text gespeichert wird.
 
 ### Version
-    Aktuelle Version: v1.3.
+    Aktuelle Version: v1.3
 
-### Programmiersprache
+### Programmsprache
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ## Voraussetzung
