@@ -16,11 +16,13 @@ whisper-openai wird beim Programmstart automatisch installiert sowie movipy und 
 ## Autor
 Entwickelt wurde dieses Projekt von [LaRocc](https://www.github.com/LaRocc) und [TomsaJ](https://www.github.com/TomsaJ)
 
-
-
 ## Ausführung
 Nach dem Start des Programms wird nach dem Video gefragt in Form eines Pfads. Es ist möglich den Pfad einzutippen, einfach ist es aber das Video in das Terminalfenster zu ziehen. Es wird ein Ordner erstellt mit dem Video, das nun einen Untertitel hat, der SRT-Datei und einer Text-Datei.
 Dieser Ordner befindet sich im gleichen Pfad, wie das Video. DIes wird aber auch nochmal im Terminal angezeigt.
+
+## Ausblick
+Diese Software kann umgebaut werden und als Backend genutzt werden. Außerdem kann die Software auch als RestAPI umgebaut werden, so das bei beiden Fällen ein Frontend entwickelt werden kann, das anschließend auf einem Web-Server gehosten und betrieben werden kann.
+Welche Voraussetzungen dafür benötigt werden, müssen selbst geprüft werden.
 
 ## Installation
 In diesem Repo liegt eine Standard-Config bei. Diese Config beinhaltet einen Durchschnittswert, der die dauer 1er-Sekunde eines videos braucht um einen unter titel zu generieren und hinzuzufügen.
