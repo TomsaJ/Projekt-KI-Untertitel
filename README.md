@@ -33,3 +33,6 @@ deine CPU/GPU zu ermitteln.
 Es sollte eine Timer-Funktion geben, die Anzeigt, wie viel Zeit verstrichen ist bzw. wie lange das Erzeugen des Untertitels noch andauert.
 Da das Whisper Modell alle Ressourcen verwendet wurde die async Funktion nicht ausgeführt. 
 Eine Möglichkeit diese Sinnvoll zu verwenden ist, den Untertitel mit der GPU zu generieren und den Timer über die CPU auszuführen.
+
+## Lizenz
+Dieses Projekt ist unter der [MIT-Lizenz](LICENSE) lizenziert - siehe die [LICENSE](LICENSE)-Datei für weitere Details.
