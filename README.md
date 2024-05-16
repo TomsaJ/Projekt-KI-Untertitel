@@ -28,8 +28,11 @@ Welche Voraussetzungen dafür benötigt werden, müssen selbst geprüft werden.
 In diesem Repo liegt eine Standard-Config bei. Diese Config beinhaltet einen Durchschnittswert, der die dauer 1er-Sekunde eines videos braucht um einen unter titel zu generieren und hinzuzufügen.
 In diesem Fall wurde der Standardwert mit einer NVIDIA GPU ermittel, diese liegt bei 0.14346300072019624 pro Sekunde.
 Um Umkehrschluss bedeutet das, dass die richtige Dauer abweichen kann. 
-Um eine genauere geschätzte Zeit zuhaben kann die Software mit dem folgenden Link heruntergeladen werden (Link). Bei der Installation werden 4 Videos durchlaufen, um einen genaueren Schätzwert für 
+Um eine genauere geschätzte Zeit zuhaben kann die Software mit dem folgenden Link heruntergeladen werden: https://drive.google.com/drive/folders/1xmqyMvj-nQgaHdVRH4cgojs3BJzvduiC?usp=share_link. Bei der Installation werden 4 Videos durchlaufen, um einen genaueren Schätzwert für 
 deine CPU/GPU zu ermitteln.
+
+## Weiterentwicklung
+Die Software kann als RestAPI umgebaut werden und als Webanwendung verwendet werden.
 
 ## Timer-Funktion (Auskommentiert)
 Es sollte eine Timer-Funktion geben, die Anzeigt, wie viel Zeit verstrichen ist bzw. wie lange das Erzeugen des Untertitels noch andauert.
@@ -38,3 +41,5 @@ Eine Möglichkeit diese Sinnvoll zu verwenden ist, den Untertitel mit der GPU zu
 
 ## Lizenz
 Dieses Projekt ist unter der [MIT-Lizenz](LICENSE) lizenziert - siehe die [LICENSE](LICENSE)-Datei für weitere Details.
+
+
