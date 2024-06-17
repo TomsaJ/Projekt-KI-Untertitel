@@ -26,7 +26,7 @@ Dieser Ordner befindet sich im gleichen Pfad, wie das Video. DIes wird aber auch
 In diesem Repo liegt eine Standard-Config bei. Diese Config beinhaltet einen Durchschnittswert, der die dauer 1er-Sekunde eines videos braucht um einen unter titel zu generieren und hinzuzufügen.
 In diesem Fall wurde der Standardwert mit einer NVIDIA GPU ermittel, diese liegt bei 0.14346300072019624 Sekunden Untertitel generieren pro Video Sekunde.
 Um Umkehrschluss bedeutet das, dass die richtige Dauer abweichen kann. 
-Um eine genauere geschätzte Zeit zuhaben kann die Software mit dem folgenden Link heruntergeladen werden (Link). Bei der Installation werden 4 Videos durchlaufen, um einen genaueren Schätzwert für 
+Um eine genauere geschätzte Zeit zuhaben kann die Software mit dem folgenden Link heruntergeladen werden [Programm-KI-VS](https://drive.google.com/drive/folders/1xmqyMvj-nQgaHdVRH4cgojs3BJzvduiC?usp=sharing). Bei der Installation werden 4 Videos durchlaufen, um einen genaueren Schätzwert für 
 deine CPU/GPU zu ermitteln.
 
 ## Timer-Funktion (Auskommentiert)
