@@ -1,6 +1,6 @@
 class ProgramDesign:
     def __init__(self):
-        self.github = "LauriTrite und TomsaJ"
+        self.github = "RoccotelliL und TomsaJ"
         self.repo = "https://github.com/TomsaJ/Projekt-KI-Untertitel.git"
         self.version = "1.3"
         self.description = "Erstellt mit whisper einen Untertitel für das\nausgewählte Video und verbindet beides miteinander"
